@@ -1,0 +1,41 @@
+
+.form{
+    width: 40%;    
+}
+.form-title{
+    width: 100%;
+    height: 2.5rem;
+    padding: 0.25rem;
+    font-size: 1.5rem;
+    
+}
+.form-title:focus{
+    outline-color: #005EFF;
+}
+
+.form-desc{
+    width: 100%;
+    padding: 0.25rem 0.5rem;
+    font-size: 1.15rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+.form-desc{
+    outline-color: #005EFF;
+}
+.form-btn{
+    width: 100px;
+    height: 35px;
+    background-color:#005EFF;
+    border-color: transparent;
+    color: white;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 1.25rem;
+}
+
+@media (max-width:640px) {
+    .form{
+        width: 90%;
+    }
+}

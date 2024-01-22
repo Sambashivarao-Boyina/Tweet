@@ -1,0 +1,108 @@
+.single-post{
+    border: 1px solid black;
+    padding: 1rem;
+    line-height: 2rem;
+    width: 60%;
+}
+
+.single-post-btns{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:2rem ;
+}
+
+
+
+.post-delete-btn{
+    background-color: #005EFF;
+    padding:1rem 1.5rem;
+    color: white;
+    border-color: transparent;
+    border-radius: 1rem;
+    font-size:1.25rem ;
+}
+
+.post-edit-btn{
+    background-color: #005EFF;
+    padding:1rem 1.5rem;
+    color: white;
+    border-color: transparent;
+    border-radius: 1rem;
+    font-size:1.25rem ;
+    text-decoration: none;
+}
+
+/* review-from */
+
+.review-form{
+    width: 100%;
+}
+.comment-label{
+    font-weight: 500;
+    font-size: 2rem;
+}
+.comment{
+    width: 70%;
+    border-radius: 2rem;
+    padding: 1.5rem 1rem;
+    font-size: 1.25rem;
+}
+.comment:focus{
+    outline-color: #005EFF;
+    
+}
+.review-submit{
+    font-size: 1.25rem;
+    padding: 0.75rem 2rem;
+    border-radius: 1rem;
+    background-color: #005EFF;
+    border-color: transparent;
+    color: white;
+}
+
+.reviews{
+    width: 90%;
+    border: 1px solid black;
+    padding: 0.25rem;
+}
+
+.review{
+    border: 1px solid black;
+    padding: 0.5rem;
+    margin: 0.25rem;
+}
+
+.review-btns{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.review-delete{
+    color: white;
+    background-color: #005EFF;
+    padding: 0.25rem;
+    border-color: transparent;
+    border-radius: 0.5rem;
+}
+
+.review-edit{
+    color: white;
+    background-color: #005EFF;
+    padding: 0.05rem 0.5rem;
+    border-color: transparent;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+}
+
+@media (max-width:640px) {
+    .single-post{
+        width: 90%;
+    }
+    .comment{
+        width: 90%;
+    }
+}

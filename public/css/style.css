@@ -1,0 +1,195 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Tektur', sans-serif;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.nav{
+    display: flex;
+    flex-direction: row;
+    border:1px solid black;
+    position: fixed;
+    top: 0px;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: white;
+}
+
+.nav-head{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav-head p,i{
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.nav-items{
+    margin-left: auto;
+   
+}
+.nav-item{
+    padding: 1rem 0.75rem;
+    font-size: 1.25rem;
+}
+
+.nav a{
+    text-decoration: none;
+    color: black;
+}
+
+.nav-options{
+    display: none;
+}
+
+
+.posts{
+    margin: auto;
+    width: 70%;
+    padding-top: 2rem;
+}
+
+.post{
+    margin: 1rem;
+    border: 1px solid black;
+    padding: 1rem;
+    line-height: 2rem;
+}
+
+.post-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-like-btn{
+    border: transparent;
+    background-color: transparent;
+}
+
+.post-likes{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.post-likes-count{
+    font-size: 1.25rem;
+}
+
+
+.display-none{
+    display: none;
+}
+
+.posts > a{
+    text-decoration: none;
+    color: black;
+}
+
+
+@media (max-width:640px) {
+    .nav{
+        display: flex;
+        flex-direction: column;
+        min-height: 80px;
+    }
+    .nav-head{
+        width: 100%;
+    }
+    .nav-options{
+        display: block;
+        margin-left: auto;
+    }
+    .nav-items{
+        transition: all 2s ease-in-out 0.5s;
+        height: 0px;
+        overflow: hidden;
+        display: flex;
+        flex-direction:column;
+        margin-left: 2px;
+        justify-content: start;
+    }
+    
+    .posts{
+        width: 100%;
+    }
+
+    .post{
+        margin: 1rem 2rem;
+    }
+   
+}
+
+@media (max-width:375px) {
+    .post-details{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* flash */
+.flash{
+    width: 70%;
+    margin: auto;
+}
+
+
+
+.flash-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.5rem;
+    padding: 0.25rem 1rem;
+    font-size: 1.25rem;
+    border-radius: 0.5rem;
+}
+
+.flash-btn{
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.success{
+    border:2px solid darkgreen;
+    background-color: rgb(154, 226, 154);
+
+}
+.error{
+    border:2px solid red;
+    background-color: rgb(243, 165, 165);
+}
+
+.success-msg{
+    color: darkgreen;
+}
+.success-btn{
+    color: darkgreen;
+}
+
+.error-msg{
+    color: red;
+}
+
+.error-btn{
+    color: red;
+}
+@media (max-width:640px) {
+    .flash{
+        width: 90%;
+    }
+}

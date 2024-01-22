@@ -1,0 +1,13 @@
+<% layout("layout/boilerplate") %>
+<% block('head').append('<link rel="stylesheet" href="/css/newform.css">') %>
+<form class="form" method="POST" action="/posts/edit/<%= post._id %>?_method=PUT">
+    <label for="title"><b>Enter title:</b></label>
+    <br><br>
+    <input class="form-title" type="text" id="title" placeholder="enter title" name="post[title]" value="<%= post.title %>" required >
+    <br><br>
+    <label for="description"><b>Enter Description:</b></label>
+    <br><br>
+    <textarea class="form-desc" name="post[description]" id="description" cols="30" rows="15" req > <%= post.description %> </textarea>
+    <br><br>
+    <button class="form-btn">Update</button>
+</form>

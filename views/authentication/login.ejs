@@ -1,0 +1,12 @@
+<% layout("layout/boilerplate") %>
+<% block("head").append('<link rel="stylesheet" href="/css/signup.css">') %>
+<form class="signup" method="POST" action="/authentication/login">
+    <label for="username">Enter your username:</label>
+    <br>
+    <input type="text" id="username" name="username"  required>
+    <br>
+    <label for="password">Enter password:</label><br>
+    <input type="password" id="password" name="password" required><br>
+    <br>
+    <button class="signup-btn">Log-In</button>
+</form>

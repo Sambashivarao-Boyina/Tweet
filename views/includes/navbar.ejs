@@ -1,0 +1,24 @@
+
+<nav class="nav">
+    <div class="nav-head">
+        <i class="fa-solid fa-blog fa-2xl" style="color: #005eff;"></i>    
+        <p>&nbsp;&nbsp;Tweet</p>
+        <div class="nav-options"><i class=" fa-solid fa-bars"></i></div>
+    </div>
+    <div class="nav-items">
+        <a class="nav-item" href="/posts">Posts</a>
+        <a class="nav-item" href="/posts/new">Create Post</a>
+        <% if(!currUser){ %>
+            <a class="nav-item" href="/authentication/login">log-in</a>
+            <a class="nav-item" href="/authentication/signUp">sign-up</a>
+        <% } %>
+        <% if(currUser){ %>
+            <a class="nav-item" href="/authentication/logout">log-out</a>
+            <span class="user">
+                <a href="/user/<%=currUser._id%>" class="username"><%= currUser.username %></a>
+            </span>
+        <% } %>
+    </div>
+   
+</nav>
+<br><br><br><br><br>

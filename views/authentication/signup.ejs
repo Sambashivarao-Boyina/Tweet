@@ -1,0 +1,14 @@
+<% layout("layout/boilerplate.ejs") %>
+<% block("head").append('<link rel="stylesheet" href="/css/signup.css">') %>
+<form class="signup" method="POST" action="/authentication/signUp">
+    <label for="username">Enter your username:</label>
+    <br>
+    <input type="text" id="username" name="user[username]"  required>
+    <br>
+    <label for="email">Enter email:</label><br>
+    <input type="email" id="email" name="user[email]" required><br>
+    <label for="password">Enter password:</label><br>
+    <input type="password" id="password" name="password" required><br>
+    <br>
+    <button class="signup-btn">Sign-Up</button>
+</form>

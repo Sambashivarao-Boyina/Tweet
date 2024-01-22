@@ -1,0 +1,12 @@
+<% layout("layout/boilerplate.ejs") %>
+<% block("head").append('<link rel="stylesheet" href="/css/editreview.css">') %>
+<form class="review-form" method="POST" action="/review/edit/<%= review._id %>?_method=PUT">
+    <label class="comment-label" for="comment">Edit the review:</label>
+    <br><br>
+    <textarea name="review[comment]" id="comment" class="comment" rows="4" required><%= review.comment %></textarea>
+    <br>
+    <br>
+    <button class="review-submit">SEND</button>
+</form>
+
+

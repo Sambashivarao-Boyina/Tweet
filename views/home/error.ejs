@@ -1,0 +1,10 @@
+<% layout("layout/boilerplate.ejs") %>
+<% block("head").append('<link rel="stylesheet" href="/css/error.css">') %>
+<div class="express-error">
+    <div class="express-status">
+        <%= status %>
+    </div>
+    <div class="express-msg">
+        <%= message %>
+    </div>
+</div>
