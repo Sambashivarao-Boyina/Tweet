@@ -1,0 +1,12 @@
+
+.userProfile{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.userposts{
+    width: 100%;
+}
