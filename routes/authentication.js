@@ -32,7 +32,7 @@ router.get("/signUp",(req,res)=>{
 router.get("/login",(req,res)=>{
         res.render("authentication/login.ejs");
     })
-    .post("/login",saveRedirectUrl ,passport.authenticate("local",{failureRedirect:"/user/login",failureFlash:true}),async (req,res)=>{
+    .post("/login",saveRedirectUrl ,passport.authenticate("local",{failureRedirect:"/authentication/login",failureFlash:true}),async (req,res)=>{
         req.flash("success","Welcome back to Tweet");
         if(!res.locals.redirectUrl){
             return res.redirect("/posts");

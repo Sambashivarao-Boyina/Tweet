@@ -65,23 +65,25 @@ router.get("/edit/:id",isLoggedIn,isOwnerOfPost,async (req,res)=>{
 
 router.put("/:id/like",isLoggedIn,async (req,res)=>{
             let {id}=req.params;
+            let {currUrl}=req.body;
             const post=await Post.findById(id);
             if(!post.likedIDs.includes(req.user._id)){
                 post.likedIDs.push(req.user._id);
                 await post.save();
             }
-            res.redirect("/posts");
+            res.redirect(currUrl);
         });
 
 router.put("/:id/dislike",isLoggedIn,async (req,res)=>{
             let {id}=req.params;
+            let {currUrl}=req.body;
             const post=await Post.findById(id);
             if(post.likedIDs.includes(req.user._id)){
                 let idx=post.likedIDs.indexOf(req.user._id);
                 post.likedIDs.splice(idx,1);
                 await post.save();
             }
-            res.redirect("/posts");
+            res.redirect(currUrl);
         });
 
 module.exports=router;  

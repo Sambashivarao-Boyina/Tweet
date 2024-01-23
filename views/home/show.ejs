@@ -16,18 +16,21 @@
                             <form method="POST" action="/posts/<%= posts[i  ]._id%>/like?_method=PUT">
                                 <button class="post-like-btn">
                                     <i class="fa-regular fa-heart"></i>
+                                    <input style="display: none;" type="text" value="<%= currUrl %>" name="currUrl">
                                 </button>
                             </form>
                         <% }else if( !posts[i].likedIDs.includes(currUser._id)){ %>
                             <form method="POST" action="/posts/<%= posts[i]._id%>/like?_method=PUT">
                                 <button class="post-like-btn">
                                     <i class="fa-regular fa-heart"></i>
+                                    <input style="display: none;" type="text" value="<%= currUrl %>" name="currUrl">
                                 </button>
                             </form>
                         <% } else { %>
                             <form method="POST" action="/posts/<%= posts[i]._id%>/dislike?_method=PUT">
                                 <button class="post-like-btn">
                                     <i class="fa-solid fa-heart" style="color: red;"></i>
+                                    <input style="display: none;" type="text" value="<%= currUrl %>" name="currUrl">
                                 </button>
                             </form>
                         <% } %>
