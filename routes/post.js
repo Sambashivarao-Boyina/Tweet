@@ -9,7 +9,6 @@ router.get("/",wrapAsync(
             async (req,res)=>{
                 const posts=await Post.find().populate("owner");
                 res.render("home/show.ejs",{posts});
-                
             }
         ))
         .post("/",isLoggedIn,validatePost,async (req,res,next)=>{

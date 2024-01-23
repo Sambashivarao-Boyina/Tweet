@@ -2,7 +2,7 @@
 <% block('head').append('<link rel="stylesheet" href="/css/singlepost.css">') %>
 
 <div class="single-post">
-    <a href=""> <%= post.owner.username %> </a>
+    <a href="/user/<%= post.owner._id %>"> <%= post.owner.username %> </a>
     <p> <b> <%= post.title %> </b></p>
     <p>  <%= post.description %> </p>
     <div class="post-likes"> 

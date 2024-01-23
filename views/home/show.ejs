@@ -4,7 +4,7 @@
     <h3>My Posts:</h3>
     <% for(let i=0 ;i<posts.length;i++){  %>
             <div class="post">
-                <p> <b><%= posts[i].owner.username %></b> </p>
+                <a href="/user/<%=posts[i].owner._id%>"> <b><%= posts[i].owner.username %></b> </a>
                 <a href="/posts/<%=posts[i]._id%>">
                     <p> <b> <%= posts[i].title %> </b></p>
                 </a>    

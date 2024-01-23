@@ -10,3 +10,12 @@
 .userposts{
     width: 100%;
 }
+
+.follow-btn{
+    color: white;
+    background-color:  #005EFF;
+    border-color: transparent;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+}

@@ -3,6 +3,13 @@
 <div class="userProfile">
     <h1><%= user.username %></h1>
     <p>user.email</p>
+    <p><b>Following :</b> <%= user.following.length %> </p>
+    <form method="POST" action="/user/<%= user._id %>/follow?_method=PUT">   
+        <button class="follow-btn">Follow</button>
+    </form>
+    <form method="POST" action="/user/<%= user._id %>/unfollow?_method=PUT">   
+        <button class="follow-btn">Unfollow</button>
+    </form>
     <div class="userposts">
         <% for(let i=0;i<posts.length;i++){ %>
             <div class="post">
@@ -10,7 +17,7 @@
                 <a href="/posts/<%=posts[i]._id%>">
                     <p> <b> <%= posts[i].title %> </b></p>
                 </a>    
-                <p>  <%= posts[i].description %> </p>
+                <p>  <%= posts[i].  description %> </p>
                 <div class="post-details"> 
                     <div class="post-likes"> 
                         <b>Likes:</b> &nbsp; 
