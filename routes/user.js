@@ -45,6 +45,17 @@ router.put("/:id/unfollow",isLoggedIn,async (req,res)=>{
         req.flash("success","You are unfollowing him");
     }
     res.redirect("/user/"+id);
-})
+});
+
+
+router.get("/:id/myfollowingsPosts",isLoggedIn,async(req,res)=>{
+    let {id}=req.params;
+    let user=await User.findById(id);
+    let posts=await Post.find({owner:{$in:user.following}}).populate("owner");
+    posts.sort((a,b)=>{
+        return b.createdDate-a.createdDate;
+    })
+    res.render("home/show.ejs",{posts});
+});
 
 module.exports=router;

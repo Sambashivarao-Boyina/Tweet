@@ -8,6 +8,9 @@ const {validatePost, isLoggedIn, isOwnerOfPost}=require("../middleware.js");
 router.get("/",wrapAsync(
             async (req,res)=>{
                 const posts=await Post.find().populate("owner");
+                posts.sort((a,b)=>{
+                    return b.createdDate-a.createdDate;
+                })
                 res.render("home/show.ejs",{posts});
             }
         ))
