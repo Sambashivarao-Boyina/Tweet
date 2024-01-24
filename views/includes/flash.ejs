@@ -1,14 +1,16 @@
 <div class="flash">
     <% if(success && success.length){ %>
         <div class="success flash-box">
-            <div class="success-msg"> <%= success %></div>
+            <div class="success-msg"><%= success %></div>
             <button class="success-btn flash-btn"><i class="fa-solid fa-xmark"></i></button>
         </div>
+        <script src="/script/flash_success.js"></script>
     <% } %>
     <% if(error && error.length){ %>
         <div class="error flash-box">
-            <div class="error-msg "> <%= error %></div>
-            <button class="error-btn flash-btn"> <i class="fa-solid fa-xmark"> </i></button>
+            <div class="error-msg "><%= error %></div>
+            <button class="error-btn flash-btn"><i class="fa-solid fa-xmark"> </i></button>
         </div>
+        <script src="/script/flash_error.js"></script>
     <% } %>
 </div>
