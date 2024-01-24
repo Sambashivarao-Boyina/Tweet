@@ -4,12 +4,24 @@
     <h1><%= user.username %></h1>
     <p>user.email</p>
     <p><b>Following :</b> <%= user.following.length %> </p>
-    <form method="POST" action="/user/<%= user._id %>/follow?_method=PUT">   
-        <button class="follow-btn">Follow</button>
-    </form>
-    <form method="POST" action="/user/<%= user._id %>/unfollow?_method=PUT">   
-        <button class="follow-btn">Unfollow</button>
-    </form>
+    <p><b>Followers :</b> <%= user.followers.length %></p>
+    
+    <% if(!currUser){ %>
+        <form method="POST" action="/user/<%= user._id %>/follow?_method=PUT">   
+            <button class="follow-btn">Follow</button>
+        </form>
+    <%}else if(currUser &&!currUser._id.equals(user._id)){ %>
+        <% if(user.followers.includes(currUser._id)){ %>
+            <form method="POST" action="/user/<%= user._id %>/unfollow?_method=PUT">   
+                <button class="follow-btn">Unfollow</button>
+            </form>
+        <% }else { %>
+            <form method="POST" action="/user/<%= user._id %>/follow?_method=PUT">   
+                <button class="follow-btn">Follow</button>
+            </form>
+        <% } %>
+    <% } %>
+    
     <div class="userposts">
         <% for(let i=0;i<posts.length;i++){ %>
             <div class="post">

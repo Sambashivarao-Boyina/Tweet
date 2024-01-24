@@ -14,10 +14,15 @@ router.get("/:id",async (req,res)=>{
         
 router.put("/:id/follow",isLoggedIn,async (req,res)=>{
     let {id}=req.params;
-    const user=await User.findById(req.user._id);
-    if(!user.following.includes(id)){
-        user.following.push(id);
-        await user.save();
+    const follower=await User.findById(req.user._id);
+    const following=await User.findById(id);
+    if(!req.user._id.equals(id) && !follower.following.includes(id)&& !following.followers.includes(req.user._id)){
+        follower.following.push(id);
+        following.followers.push(req.user._id);
+
+        await follower.save();
+        await following.save();
+
         req.flash("success","You are following him");
     }
     res.redirect("/user/"+id);    
@@ -25,12 +30,19 @@ router.put("/:id/follow",isLoggedIn,async (req,res)=>{
 
 router.put("/:id/unfollow",isLoggedIn,async (req,res)=>{
     let {id}=req.params;
-    const user=await User.findById(req.user._id);
-    if(user.following.includes(id)){
-        let idx=user.following.indexOf(id);
-        user.following.splice(idx,1);
-        await user.save();
-        req.flash("success","You are following him");
+    const follower=await User.findById(req.user._id);
+    const following=await User.findById(id);
+    if(!req.user._id.equals(id) && follower.following.includes(id) && following.followers.includes(req.user._id)){
+        let idx1=follower.following.indexOf(id);
+        let idx2=following.followers.indexOf(req.user._id);
+        
+        follower.following.splice(idx1,1);
+        following.followers.splice(idx2,1);
+
+        await follower.save();
+        await following.save();
+
+        req.flash("success","You are unfollowing him");
     }
     res.redirect("/user/"+id);
 })

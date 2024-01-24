@@ -28,7 +28,7 @@ module.exports.validateReview=(req,res,next)=>{
 module.exports.isLoggedIn=(req,res,next)=>{
     if(!req.isAuthenticated()){
         req.session.redirectUrl=req.originalUrl;
-        req.flash("error","You must login before creating a post");
+        req.flash("error","You must login/signup before useing");
         return res.redirect("/authentication/login");
     }else{
         next();
