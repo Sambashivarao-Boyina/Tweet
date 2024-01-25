@@ -1,0 +1,49 @@
+.users{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.user{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border: 2px solid black;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.user-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.user-details-head{
+    font-size: 2rem;
+    font-weight: 500;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-details-body{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: space-evenly;
+    
+}
+.follow-btn{
+    color: white;
+    background-color:  #005EFF;
+    border-color: transparent;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+}

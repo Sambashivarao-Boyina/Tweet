@@ -1,0 +1,41 @@
+<% layout("layout/boilerplate.ejs") %>
+<% block("head").append('<link rel="stylesheet" href="/css/users.css">') %>
+<div class="users">
+    <% for(let i=0;i<users.length;i++){ %>
+        <div class="user">
+            <div class="user-details">
+                <div class="user-details-head">
+                    <a href="/user/<%= users[i]._id %>"> <%= users[i].username %> </a>
+                </div>
+                <div class="user-details-body">
+                    <div class="user-following">
+                        <a href="/user/<%= users[i]._id %>/myFollowing"> <b>Following :</b>&nbsp;<%= users[i].following.length %> </a>
+                    </div>
+                    <div class="user-followers">
+                        <a href="/user/<%= users[i]._id %>/myFollowers"> <b>Followers :</b>&nbsp;<%= users[i].followers.length %> </a>
+                    </div>
+                </div>
+            </div>
+            <div class="userfollow">
+                <% if(!currUser){ %>
+                    <form method="POST" action="/user/<%= users[i]._id %>/follow?_method=PUT">  
+                        <input type="text" name="currUrl" value="<%= currUrl %>" style="display: none;" >    
+                        <button class="follow-btn">Follow</button>
+                    </form>
+                <%}else if(currUser &&!currUser._id.equals(users[i]._id)){ %>
+                    <% if(users[i].followers.includes(currUser._id)){ %>
+                        <form method="POST" action="/user/<%= users[i]._id %>/unfollow?_method=PUT"> 
+                            <input type="text" name="currUrl" value="<%= currUrl %>" style="display: none;" >   
+                            <button class="follow-btn">Unfollow</button>
+                        </form>
+                    <% }else { %>
+                        <form method="POST" action="/user/<%= users[i]._id %>/follow?_method=PUT"> 
+                            <input type="text" name="currUrl" value="<%= currUrl %>" style="display: none;" >   
+                            <button class="follow-btn">Follow</button>
+                        </form>
+                    <% } %>
+                <% } %>
+            </div>
+        </div>
+    <% } %>
+</div>

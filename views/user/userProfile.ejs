@@ -2,21 +2,23 @@
 <% block("head").append('<link rel="stylesheet" href="/css/userProfile.css">') %>
 <div class="userProfile">
     <h1><%= user.username %></h1>
-    <p>user.email</p>
-    <p><b>Following :</b> <%= user.following.length %> </p>
-    <p><b>Followers :</b> <%= user.followers.length %></p>
-    
+    <a href="/user/<%= user._id %>/myFollowing">  <p><b>Following :</b> <%= user.following.length %> </a> &nbsp;&nbsp; 
+    <a href="/user/<%= user._id %>/myFollowers"> <b>Followers :</b> <%= user.followers.length %></p> </a>
+    <p><b>Total Posts :</b><%= posts.length %></p>
     <% if(!currUser){ %>
-        <form method="POST" action="/user/<%= user._id %>/follow?_method=PUT">   
+        <form method="POST" action="/user/<%= user._id %>/follow?_method=PUT">
+            <input type="text" name="currUrl" value="<%= currUrl %>" style="display: none;" >   
             <button class="follow-btn">Follow</button>
         </form>
     <%}else if(currUser &&!currUser._id.equals(user._id)){ %>
         <% if(user.followers.includes(currUser._id)){ %>
-            <form method="POST" action="/user/<%= user._id %>/unfollow?_method=PUT">   
+            <form method="POST" action="/user/<%= user._id %>/unfollow?_method=PUT"> 
+                <input type="text" name="currUrl" value="<%= currUrl %>" style="display: none;" >     
                 <button class="follow-btn">Unfollow</button>
             </form>
         <% }else { %>
-            <form method="POST" action="/user/<%= user._id %>/follow?_method=PUT">   
+            <form method="POST" action="/user/<%= user._id %>/follow?_method=PUT">  
+                <input type="text" name="currUrl" value="<%= currUrl %>" style="display: none;" >    
                 <button class="follow-btn">Follow</button>
             </form>
         <% } %>

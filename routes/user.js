@@ -2,7 +2,6 @@ const express=require("express");
 const router=express.Router();
 const User=require("../models/user");
 const Post=require("../models/post");
-const { use } = require("passport");
 const { isLoggedIn } = require("../middleware");
 
 router.get("/:id",async (req,res)=>{
@@ -14,6 +13,7 @@ router.get("/:id",async (req,res)=>{
         
 router.put("/:id/follow",isLoggedIn,async (req,res)=>{
     let {id}=req.params;
+    let {currUrl}=req.body;
     const follower=await User.findById(req.user._id);
     const following=await User.findById(id);
     if(!req.user._id.equals(id) && !follower.following.includes(id)&& !following.followers.includes(req.user._id)){
@@ -25,11 +25,12 @@ router.put("/:id/follow",isLoggedIn,async (req,res)=>{
 
         req.flash("success","You are following him");
     }
-    res.redirect("/user/"+id);    
+    res.redirect(currUrl);    
 });
 
 router.put("/:id/unfollow",isLoggedIn,async (req,res)=>{
     let {id}=req.params;
+    let {currUrl}=req.body;
     const follower=await User.findById(req.user._id);
     const following=await User.findById(id);
     if(!req.user._id.equals(id) && follower.following.includes(id) && following.followers.includes(req.user._id)){
@@ -44,7 +45,7 @@ router.put("/:id/unfollow",isLoggedIn,async (req,res)=>{
 
         req.flash("success","You are unfollowing him");
     }
-    res.redirect("/user/"+id);
+    res.redirect(currUrl);
 });
 
 
@@ -56,6 +57,20 @@ router.get("/:id/myfollowingsPosts",isLoggedIn,async(req,res)=>{
         return b.createdDate-a.createdDate;
     })
     res.render("home/show.ejs",{posts});
+});
+
+router.get("/:id/myFollowing",async (req,res)=>{
+    let {id}=req.params;
+    let user=await User.findById(id,{following:true,_id:false}).populate("following");
+    let users=user.following;
+    res.render("home/users.ejs",{users});
+});
+
+router.get("/:id/myFollowers",async (req,res)=>{
+    let {id}=req.params;
+    let user=await User.findById(id,{following:true,_id:false}).populate("followers");
+    let users=user.followers;
+    res.render("home/users.ejs",{users});
 });
 
 module.exports=router;

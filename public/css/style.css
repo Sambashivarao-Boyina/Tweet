@@ -101,7 +101,7 @@
 }
 
 
-@media (max-width:640px) {
+@media (max-width:850px) {
     .nav{
         display: flex;
         flex-direction: column;
