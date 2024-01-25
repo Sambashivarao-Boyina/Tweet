@@ -19,6 +19,7 @@ const review=require("./routes/review.js");
 const authentication=require("./routes/authentication.js");
 const user=require("./routes/user.js");
 const allUsers=require("./routes/allusers.js");
+const chats=require("./routes/chats.js");
 
 app.engine("ejs",ejsMate);
 app.set("views",path.join(__dirname,"views"));
@@ -76,7 +77,7 @@ app.use((req,res,next)=>{
 
 
 app.get("/",(req,res)=>{
-    res.send("Home Route");
+    res.redirect("/posts");
 });
 
 
@@ -88,6 +89,7 @@ app.use("/review",review);
 app.use("/authentication",authentication);
 app.use("/user",user);
 app.use("/allUsers",allUsers);
+app.use("/chats",chats);
 
 app.all("*",(req,res,next)=>{
     next(new ExpressError(404,"page not found"));

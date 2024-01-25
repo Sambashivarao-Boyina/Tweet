@@ -14,3 +14,9 @@ module.exports.reviewSchema = Joi.object({
         comment:Joi.string().required().max(100).trim()
     }).required()
 })
+
+module.exports.messageSchema=Joi.object({
+    message:Joi.object({
+        text:Joi.string().required().max(150).trim()
+    }).required()
+})

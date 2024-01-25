@@ -63,14 +63,39 @@ router.get("/:id/myFollowing",async (req,res)=>{
     let {id}=req.params;
     let user=await User.findById(id,{following:true,_id:false}).populate("following");
     let users=user.following;
-    res.render("home/users.ejs",{users});
+    res.render("home/users.ejs",{users,user});
 });
 
 router.get("/:id/myFollowers",async (req,res)=>{
     let {id}=req.params;
     let user=await User.findById(id,{following:true,_id:false}).populate("followers");
     let users=user.followers;
-    res.render("home/users.ejs",{users});
+    res.render("home/users.ejs",{users,user});
 });
+
+router.put("/:id/startchat",isLoggedIn, async(req,res)=>{
+    let {id}=req.params;
+
+    let user1=await User.findById(id);
+    let user2=await User.findById(req.user._id);
+
+    if(!user1.chats.includes(req.user._id) && !user2.chats.includes(id)){
+        user1.chats.push(req.user._id);
+        user2.chats.push(id);
+    }
+    else{
+        req.flash("error","You are already have a chat with him");
+        return res.redirect("/user/"+id);
+    }
+
+    await user1.save();
+    await user2.save();
+
+    req.flash("success","you can start chats with him");
+    res.redirect("/user/"+id);
+    
+});
+
+
 
 module.exports=router;

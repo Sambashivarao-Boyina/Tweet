@@ -1,0 +1,16 @@
+<% layout("layout/boilerplate.ejs") %>
+<% block("head").append('<link rel="stylesheet" href="/css/userChats.css">') %>
+<div class="chats">
+    <% if(chats.length==0){ %>
+        <h2>You Have No Chats. Start Chat with anyone</h2>
+    <% } %>
+    <% for(let i=0;i<chats.length;i++){ %>
+        <a href="/chats/<%= currUser._id %>/<%= chats[i]._id %>/messages">
+            <div class="chat">
+                <div class="chat-details">
+                    <h2><%= chats[i].username %> </h2>
+                </div>
+            </div>
+        </a>
+    <% } %>
+</div>

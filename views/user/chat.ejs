@@ -1,0 +1,35 @@
+<% layout("layout/boilerplate") %>
+<% block("head").append('<link rel="stylesheet" href="/css/chat.css">') %>
+<div class="chatbox">
+    <div class="head">
+        <%= receiver.username %>
+    </div>
+    <div class="messages">
+        <% if(messages.length==0){ %>
+            <h2>You have no messages from this contact</h2>
+        <% } %>
+
+        <% for(let i=0;i<messages.length;i++){ %>
+            <% if(messages[i].sender.equals(currUser._id)){ %>
+                <div class="message send">
+                    <p><%= messages[i].text %></p>
+                    <p class="message-date" style="text-align: right;"><%= messages[i].messagedDate.toLocaleDateString() %>,<%= messages[i].messagedDate.toLocaleTimeString() %></p>
+                </div>
+            <% }else { %>
+                <div class="message received">
+                    <p><%= messages[i].text %></p>
+                    <p class="message-date" ><%= messages[i].messagedDate.toLocaleDateString() %>,<%= messages[i].messagedDate.toLocaleTimeString() %></p>
+                </div>
+            <% } %>
+        <% } %>
+    </div>
+</div>
+
+<form class="message-box" method="POST" action="/chats/<%= currUser._id %>/<%= receiver._id %>/message">
+    <textarea class="input-box" name="message[text]" placeholder="message" cols="30" rows="10"></textarea>
+    <button class="message-btn"><i class="fa-solid fa-paper-plane"></i></button>
+</form>
+
+<% block("footer").append('<script src="/script/chat.js"></script>') %>
+
+

@@ -4,6 +4,14 @@
     <h1><%= user.username %></h1>
     <a href="/user/<%= user._id %>/myFollowing">  <p><b>Following :</b> <%= user.following.length %> </a> &nbsp;&nbsp; 
     <a href="/user/<%= user._id %>/myFollowers"> <b>Followers :</b> <%= user.followers.length %></p> </a>
+    <a href="/chats/<%= user._id %>/myChats"> <h2>Mychats</h2> </a>
+    <% if(currUser && !currUser._id.equals(user._id) && !user.chats.includes(currUser._id)){ %>
+        <br>
+        <form method="POST" action="/user/<%= user._id %>/startchat?_method=PUT">
+            <button class="follow-btn">Start Chat</button>
+        </form>
+    <% } %>
+    <br>
     <p><b>Total Posts :</b><%= posts.length %></p>
     <% if(!currUser){ %>
         <form method="POST" action="/user/<%= user._id %>/follow?_method=PUT">

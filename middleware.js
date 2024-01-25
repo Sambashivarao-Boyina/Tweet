@@ -1,7 +1,8 @@
-const {postSchema, reviewSchema, userSchema}=require("./schema.js");
+const {postSchema, reviewSchema, messageSchema}=require("./schema.js");
 const ExpressError=require("./util/ExpressError.js");
 const Post=require("./models/post.js");
 const Review=require("./models/review.js");
+const User = require("./models/user.js");
 
 module.exports.validatePost= (req,res,next)=>{
     let {error}= postSchema.validate(req.body);
@@ -20,6 +21,17 @@ module.exports.validateReview=(req,res,next)=>{
     if(error){
         let errMsg=error.details.map((el)=>el.message).join(",");
         throw new ExpressError(400,errMsg); 
+    }else{
+        next();
+    }
+}
+
+module.exports.validateMessage=(req,res,next)=>{
+    let {error}=messageSchema.validate(req.body);
+
+    if(error){
+        let errMsg=error.details.map((el)=>el.message).join(",");
+        throw new ExpressError(400,errMsg);
     }else{
         next();
     }
@@ -60,6 +72,16 @@ module.exports.isOwnerOfReview=async (req,res,next)=>{
     if(!review.owner._id.equals(res.locals.currUser._id)){
         req.flash("error","you are not the owner of the review");
         return res.redirect("/posts/"+postID);
+    }
+    next();
+}
+
+module.exports.isOwner=async (req,res,next)=>{
+    let {id}=req.params;
+    let user=await User.findById(id);
+    if(!user._id.equals(req.user._id)){
+        req.flash("error","you are not the owner");
+        return res.redirect("/posts");
     }
     next();
 }
