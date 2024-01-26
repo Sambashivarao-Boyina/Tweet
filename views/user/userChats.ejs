@@ -7,6 +7,11 @@
     <% for(let i=0;i<chats.length;i++){ %>
         <a href="/chats/<%= currUser._id %>/<%= chats[i]._id %>/messages">
             <div class="chat">
+                <% if(chats[i].profileImage && chats[i].profileImage.url){ %>
+                    <img src="<%= chats[i].profileImage.url %>" class="chat-profilePic" alt="imagenotfound">
+                <% }else{ %>
+                    <img src="https://i.pinimg.com/564x/ad/73/1c/ad731cd0da0641bb16090f25778ef0fd.jpg" class="chat-profilePic" alt="imagenotfound">
+                <% } %>
                 <div class="chat-details">
                     <h2><%= chats[i].username %> </h2>
                 </div>

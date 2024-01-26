@@ -5,7 +5,8 @@ module.exports.postSchema = Joi.object ({
         title:Joi.string().required(),
         description:Joi.string().trim().min(2).max(200).required(),
         likes:Joi.number().default(0),
-        createdDate:Joi.date()
+        createdDate:Joi.date(),
+        image:Joi.string()
     }).required()
 });
 

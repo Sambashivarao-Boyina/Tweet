@@ -1,10 +1,18 @@
 <% layout("layout/boilerplate.ejs") %>
 <% block("head").append('<link rel="stylesheet" href="/css/signup.css">') %>
-<form class="signup" method="POST" action="/authentication/signUp">
+<form class="signup" method="POST" action="/authentication/signUp" enctype="multipart/form-data">
     <label for="username">Enter your username:</label>
     <br>
-    <input type="text" id="username" name="user[username]"  required>
+    <input  type="text" id="username" name="user[username]"  required>
     <br>
+    <label for="profile">Upload Profile Pic:</label>
+    <input type="file" name="user[profileImage]" id="profile" accept="image/*">
+    <p>Select Gender:</p>
+    <div>
+        <input type="radio" name="user[gender]" id="male" value="Male" required> <label for="male">Male</label> <br>
+        <input type="radio" name="user[gender]" id="female" value="Female" required> <label for="female">Female</label> <br>
+        <input type="radio" name="user[gender]" id="others" value="Others" required> <label for="others">Others</label><br>
+    </div>
     <label for="email">Enter email:</label><br>
     <input type="email" id="email" name="user[email]" required><br>
     <label for="password">Enter password:</label><br>

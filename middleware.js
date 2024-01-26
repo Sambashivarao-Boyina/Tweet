@@ -6,7 +6,6 @@ const User = require("./models/user.js");
 
 module.exports.validatePost= (req,res,next)=>{
     let {error}= postSchema.validate(req.body);
-
     if(error){
         let errMsg=error.details.map((el)=>el.message).join(",");
         throw new ExpressError(400,errMsg); 

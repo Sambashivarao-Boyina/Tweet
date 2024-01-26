@@ -2,7 +2,12 @@ const express=require("express");
 const router=express.Router();
 const User=require("../models/user");
 const Post=require("../models/post");
-const { isLoggedIn } = require("../middleware");
+const { isLoggedIn, isOwner } = require("../middleware");
+
+const multer  = require('multer')
+const {storage}=require("../cloudConfig.js");
+const upload = multer({ storage });
+
 
 router.get("/:id",async (req,res)=>{
     let {id} = req.params;
@@ -94,6 +99,30 @@ router.put("/:id/startchat",isLoggedIn, async(req,res)=>{
     req.flash("success","you can start chats with him");
     res.redirect("/user/"+id);
     
+});
+
+
+router.put("/:id/changeProfile",isLoggedIn,isOwner,upload.single('profileImage'),async (req,res)=>{
+    let {id}=req.params;
+    const user =await User.findById(id);
+    if(req.file){
+        let url=req.file.path;
+        let filename=req.file.filename;
+        user.profileImage={url,filename};
+        await User.findByIdAndUpdate(id,{...user});
+        req.flash("success","Profile Image is Updated");
+    }
+    res.redirect("/user/"+id);           
+});
+
+router.put("/:id/deleteProfile",isLoggedIn,isOwner,async (req,res)=>{
+    let {id}=req.params;
+    const user =await User.findById(id);
+    user.profileImage={url:"",filename:""};
+    await User.findByIdAndUpdate(id,{...user});
+    req.flash("success","Profile Image is Deleted");
+    
+    res.redirect("/user/"+id);           
 });
 
 

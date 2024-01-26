@@ -4,15 +4,25 @@ const { saveRedirectUrl}=require("../middleware.js");
 const wrapAsync=require("../util/wrapAsync.js");
 const passport=require("passport");
 const User=require("../models/user.js");
+const multer  = require('multer')
+const {storage}=require("../cloudConfig.js");
+
+const upload = multer({ storage });
+
 
 //user
 router.get("/signUp",(req,res)=>{
         res.render("authentication/signup.ejs");
     })
-    .post("/signUp",wrapAsync( async (req,res,next)=>{
+    .post("/signUp",upload.single('user[profileImage]'),wrapAsync( async (req,res,next)=>{
         try{
             let {user,password}=req.body;
             const newUser=new User(user);
+            if(req.file){
+                let url=req.file.path;
+                let filename=req.file.filename;
+                newUser.profileImage={url,filename};
+            }
             const registerUser= await User.register(newUser,password);
             req.login(registerUser,(err)=>{
                 if(err){

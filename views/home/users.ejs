@@ -3,6 +3,12 @@
 <div class="users">
     <% for(let i=0;i<users.length;i++){ %>
         <div class="user">
+            <% if(users[i].profileImage && users[i].profileImage.url){ %>
+                <img src="<%= users[i].profileImage.url %>" class="user-profilePic" alt="imagenotfound">
+            <% }else{ %>
+                <img src="https://i.pinimg.com/564x/ad/73/1c/ad731cd0da0641bb16090f25778ef0fd.jpg" class="user-profilePic" alt="imagenotfound">
+            <% } %>
+
             <div class="user-details">
                 <div class="user-details-head">
                     <a href="/user/<%= users[i]._id %>"> <%= users[i].username %> </a>

@@ -1,6 +1,9 @@
+if(process.env.NODE_ENV!="production"){
+    require("dotenv").config();
+}
+ 
 const express=require("express");
 const app=express();
-
 
 const ejsMate=require("ejs-mate");
 const path=require("path");
@@ -30,6 +33,7 @@ app.use(methodOverride("_method"));
 app.use(express.urlencoded({extended:true}));
 
 const dbURL='mongodb://127.0.0.1:27017/tweet';
+// const dbURL=process.env.ATLASDB_URL;
 
 async function main() {
   await mongoose.connect(dbURL);

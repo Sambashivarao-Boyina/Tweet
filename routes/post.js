@@ -3,7 +3,10 @@ const router=express.Router();
 const wrapAsync=require("../util/wrapAsync");
 const Post=require("../models/post");
 const {validatePost, isLoggedIn, isOwnerOfPost}=require("../middleware.js");
+const multer  = require('multer')
+const {storage}=require("../cloudConfig.js");
 
+const upload = multer({ storage });
 
 router.get("/",wrapAsync(
             async (req,res)=>{
@@ -14,16 +17,18 @@ router.get("/",wrapAsync(
                 res.render("home/show.ejs",{posts});
             }
         ))
-        .post("/",isLoggedIn,validatePost,async (req,res,next)=>{
-            const newPost=req.body.post;
-            const createPost=new Post(newPost);
-            createPost.owner=req.user._id;
-            await createPost.save();
-            req.flash("success","New Post is Created!");
+        .post("/",isLoggedIn,upload.single('post[image]'),validatePost,async (req,res,next)=>{
+            let url=req.file.path;
+            let filename=req.file.filename;
+            const newPost=new Post(req.body.post);
+            newPost.owner=req.user._id;
+            newPost.image={url,filename};
+            await newPost.save();
+            req.flash("success","Post is created successfully");
             res.redirect("/posts");
         });
         
-router.get("/new",isLoggedIn,(req,res)=>{
+router.get("/new",(req,res)=>{
             res.render("home/new.ejs");
         });
 

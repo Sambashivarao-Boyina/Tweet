@@ -27,3 +27,7 @@
     
 }
 
+.chat-profilePic{
+    height: 5rem;
+    border-radius: 50%;
+}

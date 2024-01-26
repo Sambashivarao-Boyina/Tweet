@@ -7,7 +7,7 @@
     font-size: 2rem;
 }
 
-.signup input{
+.signup > input{
     width: 90%;
     height: 1.75rem;
     border-radius: 1rem;

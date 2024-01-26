@@ -1,9 +1,13 @@
 <% layout("layout/boilerplate") %>
 <% block('head').append('<link rel="stylesheet" href="/css/newform.css">') %>
-<form class="form" method="POST" action="/posts">
+<form class="form" method="POST" action="/posts"  enctype="multipart/form-data">
     <label for="title"><b>Enter title:</b></label>
     <br><br>
     <input class="form-title" type="text" id="title" placeholder="enter title" name="post[title]" required >
+    <br><br>
+    <label for="image"><b>Upload Image:</b></label>
+    <br><br>
+    <input class="form-image" type="file"  id="image" placeholder="image" name="post[image]" accept="image/*" required >
     <br><br>
     <label for="description"><b>Enter Description:</b></label>
     <br><br>

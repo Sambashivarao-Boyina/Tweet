@@ -8,6 +8,14 @@ const userSchema=new Schema({
         required:true,
         unique:true,
     },
+    gender:{
+        type:String,
+        enum:["Male","Female","Others"]
+    },
+    profileImage:{
+        url:String,
+        filename:String
+    },
     following:[
         {
             type:Schema.Types.ObjectId,

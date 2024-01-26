@@ -1,6 +1,25 @@
 <% layout("layout/boilerplate.ejs") %>
 <% block("head").append('<link rel="stylesheet" href="/css/userProfile.css">') %>
 <div class="userProfile">
+    
+    <% if(user.profileImage && user.profileImage.url){ %>
+        <img src="<%= user.profileImage.url %>" class="user-profilePic" alt="imagenotfound">
+    <% }else{ %>
+        <img src="https://i.pinimg.com/564x/ad/73/1c/ad731cd0da0641bb16090f25778ef0fd.jpg" class="user-profilePic" alt="imagenotfound">
+    <% } %>
+    <br>
+    <% if(currUser && user._id.equals(currUser._id)){ %>
+        <form method="POST" action="/user/<%= currUser._id %>/changeProfile?_method=PUT" enctype="multipart/form-data">
+            <input type="file" name="profileImage" placeholder="image"  accept="image/*"  required>
+            <button class="follow-btn"> Change Profile Image</button>
+        </form>
+        <br>
+        <form method="POST" action="/user/<%= currUser._id %>/deleteProfile?_method=PUT" enctype="multipart/form-data">
+            <button class="follow-btn"> Delete Profile Image</button>
+        </form>
+        <br>
+    <% } %>
+
     <h1><%= user.username %></h1>
     <a href="/user/<%= user._id %>/myFollowing">  <p><b>Following :</b> <%= user.following.length %> </a> &nbsp;&nbsp; 
     <a href="/user/<%= user._id %>/myFollowers"> <b>Followers :</b> <%= user.followers.length %></p> </a>

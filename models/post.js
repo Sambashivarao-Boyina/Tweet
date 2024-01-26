@@ -9,6 +9,10 @@ const postSchema=new Schema({
         trim:true,
         required:true,
     },
+    image:{
+        url:String,
+        filename:String
+    },
     description:{
         type:String,
         required:true,
