@@ -3,6 +3,7 @@
 <div class="chatbox">
     <div class="head">
         <%= receiver.username %>
+        <p class="user-status"></p>
     </div>
     <div class="messages">
         <% if(messages.length==0){ %>
@@ -30,6 +31,60 @@
     <button class="message-btn"><i class="fa-solid fa-paper-plane"></i></button>
 </form>
 
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket=io();
+    const users=[];
+    window.onload=()=>{
+        socket.emit("new-user-add","<%=currUser._id%>");
+        socket.on("get-active-users",(activeUsers)=>{
+            for(let i=0;i<activeUsers.length;i++){
+                users.push(activeUsers[i]);
+                if(activeUsers[i].userID==="<%=receiver._id%>"){
+                    let status=document.querySelector(".user-status");
+                    status.innerHTML="online";
+                }
+            }
+            
+        })
+    }
+    socket.on("get-active-users",(activeUsers)=>{
+        users=[];
+        for(let i=0;i<activeUsers.length;i++){
+            users.push(activeUsers[i]);
+            if(activeUsers[i].userID==="<%=receiver._id%>"){
+                let status=document.querySelector(".user-status");
+                status.innerHTML="online";
+            }
+        }
+        
+    })
+
+    function findSocketID(userID){
+        for(let i=0;i<users.length;i++){
+            if(users[i].userID===userID){
+                return users[i].socketID;
+            }
+        }
+    }
+
+    const messageBox=document.querySelector(".message-box");
+    messageBox.addEventListener("submit",(event)=>{
+        let userSocketID=findSocketID("<%=receiver._id%>");
+        socket.emit("messageSend","<%=receiver._id%>")
+        console.log("message is send");
+    });
+
+
+    socket.on("messageReceive",(receiverID)=>{
+        if(receiverID==="<%=currUser._id%>"){
+            location.reload();
+        }        
+    });
+
+
+</script>
 <% block("footer").append('<script src="/script/chat.js"></script>') %>
+
 
 

@@ -105,6 +105,35 @@ app.use((err,req,res,next)=>{
 });
 
 
-app.listen(port,()=>{
+server=app.listen(port,()=>{
     console.log("server is listening on port 8080");
 });
+
+const io=require("socket.io")(server);
+
+
+let activeUsers=[];
+
+io.on("connection",(socket)=>{
+    
+    socket.on("new-user-add",(newUserID)=>{
+        if(!activeUsers.some((user)=>user.userID===newUserID)){
+            activeUsers.push({
+                userID:newUserID,
+                socketID:socket.id,
+            });
+        }
+
+        io.emit('get-active-users',activeUsers)
+    });
+
+    socket.on("disconnect",(socket)=>{
+        activeUsers=activeUsers.filter((user)=>user.socketID !==socket.id);
+    })
+
+    socket.on("messageSend",(receiverID)=>{
+        socket.broadcast.emit("messageReceive",receiverID);
+        io.emit('get-active-users',activeUsers)
+    })
+});
+

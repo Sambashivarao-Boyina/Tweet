@@ -41,7 +41,7 @@ router.post("/:id/:receivID/message",isLoggedIn,isOwner,validateMessage,async (r
     newMessage.sender=senderID;
     newMessage.receiver=receivID;
 
-    await newMessage.save();
+    await newMessage.save();  
     res.redirect("/chats/"+senderID+"/"+receivID+"/messages");
 });
 

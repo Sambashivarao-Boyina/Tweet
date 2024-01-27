@@ -1,6 +1,7 @@
 <% layout("layout/boilerplate.ejs") %>
 <% block("head").append('<link rel="stylesheet" href="/css/userChats.css">') %>
 <div class="chats">
+    <% const activeUsers=new Set() %>
     <% if(chats.length==0){ %>
         <h2>You Have No Chats. Start Chat with anyone</h2>
     <% } %>
@@ -14,8 +15,38 @@
                 <% } %>
                 <div class="chat-details">
                     <h2><%= chats[i].username %> </h2>
+                    <p id="<%= chats[i]._id %>"></p>
                 </div>
             </div>
         </a>
     <% } %>
 </div>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket=io();
+    window.onload=function(){
+        socket.emit("new-user-add","<%=currUser._id%>");
+        socket.on("get-active-users",(users)=>{
+            for(let i=0;i<users.length;i++){
+                let element=document.getElementById(users.userID);
+                if(element){
+                    element.innerHTML="online";
+                }
+            }
+        });
+        
+    };
+    document.addEventListener('DOMContentLoaded',(event)=>{
+        socket.on("get-active-users",(users)=>{
+            for(let i=0;i<users.length;i++){
+                let element=document.getElementById(users[i].userID);
+                if(element){
+                    element.innerHTML="online";
+                }
+            }
+    
+        });
+    })
+</script>
