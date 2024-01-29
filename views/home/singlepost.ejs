@@ -2,6 +2,7 @@
 <% block('head').append('<link rel="stylesheet" href="/css/singlepost.css">') %>
 
 <div class="single-post">
+    <img src="<%= post.image.url %>" alt="<%= post.image.filename %>" class="singlepost-image">
     <a href="/user/<%= post.owner._id %>"> <%= post.owner.username %> </a>
     <p> <b> <%= post.title %> </b></p>
     <p>  <%= post.description %> </p>

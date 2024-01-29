@@ -11,7 +11,10 @@
     align-items: center;
     gap:2rem ;
 }
-
+.singlepost-image{
+    width: 100%;
+    object-fit: cover; 
+}
 
 
 .post-delete-btn{
