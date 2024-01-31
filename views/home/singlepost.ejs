@@ -3,11 +3,24 @@
 
 <div class="single-post">
     <img src="<%= post.image.url %>" alt="<%= post.image.filename %>" class="singlepost-image">
-    <a href="/user/<%= post.owner._id %>"> <%= post.owner.username %> </a>
-    <p> <b> <%= post.title %> </b></p>
+    <br><br>
+    <a href="/user/<%= post.owner._id %>">
+        <span class="post-owner">
+            <% if(post.owner.profileImage && post.owner.profileImage.url){ %>
+                <img src="<%= post.owner.profileImage.url %>" class="single-post-owner-profile-pic" alt="imagenotfound">
+            <% }else{ %>
+                <img src="https://i.pinimg.com/564x/ad/73/1c/ad731cd0da0641bb16090f25778ef0fd.jpg" class="single-post-owner-profile-pic" alt="imagenotfound">
+            <% } %>
+            <b ><%= post.owner.username %></b> 
+            <br>
+        </span>
+    </a>
+    <br>
+    <p class="single-post-title"> <b> <%= post.title %> </b></p>
     <p>  <%= post.description %> </p>
+    <br>
     <div class="post-likes"> 
-        <b>Likes:</b> &nbsp; 
+        &nbsp; 
         <% if(!currUser){ %>
             <form method="POST" action="/posts/<%= post._id%>/like?_method=PUT">
                 <button class="post-like-btn">
@@ -33,16 +46,20 @@
         
         <p class="post-likes-count">&nbsp;<%= post.likedIDs.length %></p> 
     </div> 
+    
     <p> <%= post.createdDate.toLocaleDateString() %> , <%= post.createdDate.toLocaleTimeString() %> </p>
 
-    <div class="single-post-btns">
-        <form method="POST" action="/posts/<%=post._id%>?_method=DELETE">
-            <button class="post-delete-btn">Delete</button>
-        </form>
-        <a class="post-edit-btn" href="/posts/edit/<%= post._id %>">Edit Post</a>
-    </div>
+    <% if(currUser && currUser._id.equals(post.owner._id)){ %>
+        <div class="single-post-btns">
+            <form method="POST" action="/posts/<%=post._id%>?_method=DELETE">
+                <button class="post-delete-btn">Delete</button>
+            </form>
+            <a class="post-edit-btn" href="/posts/edit/<%= post._id %>">Edit Post</a>
+        </div>
+        <br>
+    <% } %>
 
-    <br>
+   
     
     <form class="review-form" method="POST" action="/review/<%= post._id %>">
         <label class="comment-label" for="comment">Write a review:</label>
@@ -56,15 +73,27 @@
         <div class="reviews">
             <% for(let i=0;i<post.reviews.length;i++){ %>
                 <div class="review">
-                    <a href=""> <%= post.reviews[i].owner.username %> </a><br>
+                    <a href="/user/<%= post.reviews[i].owner._id %>">
+                        <span class="review-owner">
+                            <% if(post.reviews[i].owner.profileImage && post.reviews[i].owner.profileImage.url){ %>
+                                <img src="<%=post.reviews[i].owner.profileImage.url %>" class="review-owner-profile-pic" alt="imagenotfound">
+                            <% }else{ %>
+                                <img src="https://i.pinimg.com/564x/ad/73/1c/ad731cd0da0641bb16090f25778ef0fd.jpg" class="review-owner-profile-pic" alt="imagenotfound">
+                            <% } %>
+                            <b >&nbsp; <%= post.reviews[i].owner.username %> </b> 
+                          
+                        </span>
+                    </a>
                     <%= post.reviews[i].comment %>
-                    <br>
-                    <div class="review-btns">
-                        <form method="POST" action="/review/<%= post._id %>/<%=post.reviews[i]._id%>?_method=DELETE">
-                            <button class="review-delete">Delete</button>
-                        </form>
-                        <a href="/review/edit/<%= post._id %>/<%= post.reviews[i]._id%>" class="review-edit">Edit</a>
-                    </div>
+                    <% if(currUser && post.reviews[i].owner._id.equals(currUser._id)){ %>
+                        <br>
+                        <div class="review-btns">
+                            <form method="POST" action="/review/<%= post._id %>/<%=post.reviews[i]._id%>?_method=DELETE">
+                                <button class="review-delete">Delete</button>
+                            </form>
+                            <a href="/review/edit/<%= post._id %>/<%= post.reviews[i]._id%>" class="review-edit">Edit</a>
+                        </div>
+                    <% } %>
                 </div>
             <% } %>
         </div>

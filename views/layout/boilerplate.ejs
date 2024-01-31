@@ -8,14 +8,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
     <%- block('head').toString() %>
 </head>
 <body>
-    <%- include("../includes/navbar.ejs")%>
-    <div class="container">
-        <%- include("../includes/flash.ejs") %>
-        <%- body -%>
+    <div class="head">
+        <i class="fa-solid fa-blog fa-2xl" style="color: #005eff;"></i>
+        <a href="/posts">   
+            <p>&nbsp;&nbsp;Tweet</p>
+        </a>
+    </div>
+    <div class="body">
+        <%- include("../includes/navbar.ejs")%>
+        <div class="container">         
+            <%- include("../includes/flash.ejs") %>
+            <%- body -%>
+        </div>
     </div>
     <br><br><br><br><br>
     <script src="/script/navbar.js"></script>

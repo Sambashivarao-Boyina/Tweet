@@ -5,24 +5,34 @@
         <a href="/posts">   
             <p>&nbsp;&nbsp;Tweet</p>
         </a>
-        <div class="nav-options"><i class=" fa-solid fa-bars"></i></div>
+        
     </div>
     <div class="nav-items">
-        <a class="nav-item" href="/posts">Posts</a>
-        <a class="nav-item" href="/allusers">All Users</a>
+        <a class="nav-item" href="/posts"><i class="fa-solid fa-house"></i>&nbsp;<span class="nav-item-name">Home</span></a>
+        <a class="nav-item" href="/allusers"> <i class="fa-solid fa-people-group"></i>&nbsp;<span class="nav-item-name">All Users</span></a>
         <% if(currUser){ %>
-            <a class="nav-item" href="/user/<%= currUser._id %>/myfollowingsPosts">PostsForU</a>
+            <a class="nav-item" href="/user/<%= currUser._id %>/myfollowingsPosts"><i class="far fa-lightbulb"></i>&nbsp;<span class="nav-item-name">PostsForU</span></a>
         <% } %>
-        <a class="nav-item" href="/posts/new">Create Post</a>
+        <a class="nav-item" href="/posts/new"><i class="fa-regular fa-square-plus"></i>&nbsp;<span class="nav-item-name">Create Post</span></a>
         <% if(!currUser){ %>
-            <a class="nav-item" href="/authentication/login">log-in</a>
-            <a class="nav-item" href="/authentication/signUp">sign-up</a>
+            <a class="nav-item" href="/authentication/login"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;<span class="nav-item-name">Log-in</span></a>
+            <a class="nav-item" href="/authentication/signUp"><i class="fa-solid fa-user-plus"></i>&nbsp;<span class="nav-item-name">Sign-up</span></a>
         <% } %>
         <% if(currUser){ %>
-            <a class="nav-item" href="/authentication/logout">log-out</a>
-            <span class="owner">
-                <a class="nav-item" href="/user/<%=currUser._id%>" class="username"><%= currUser.username %></a>
-            </span>
+            <a class="nav-item" href="/authentication/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;<span class="nav-item-name">Log-out</span></a>
+            <div class="nav-item nav-item-last">
+                <a  href="/user/<%=currUser._id%>" class="username">
+                    <div class="owner">
+                        <% if(currUser.profileImage && currUser.profileImage.url){ %>
+                            <img src="<%= currUser.profileImage.url %>" class="owner-profile-pic" alt="imagenotfound">
+                        <% }else{ %>
+                            <img src="https://i.pinimg.com/564x/ad/73/1c/ad731cd0da0641bb16090f25778ef0fd.jpg" class="owner-profile-pic" alt="imagenotfound">
+                        <% } %>
+                        &nbsp;<span class="nav-item-name"><%= currUser.username %></span>
+                    </div>
+                </a>
+            </div>
+            
         <% } %>
     </div>
    

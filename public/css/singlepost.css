@@ -1,8 +1,30 @@
 .single-post{
-    border: 1px solid black;
     padding: 1rem;
     line-height: 2rem;
-    width: 60%;
+    width: 70%;
+    margin-top: 2rem;
+}
+
+.single-post a{
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+    
+}
+
+.post-owner{
+    font-size: 2rem;
+}
+
+
+.single-post-title{
+    font-size: 1.25rem;
+}
+
+.single-post-owner-profile-pic{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
 }
 
 .single-post-btns{
@@ -24,17 +46,32 @@
     border-color: transparent;
     border-radius: 1rem;
     font-size:1.25rem ;
+    font-weight: 700;
 }
 
 .post-edit-btn{
     background-color: #005EFF;
     padding:1rem 1.5rem;
-    color: white;
+    color: white !important;
     border-color: transparent;
     border-radius: 1rem;
     font-size:1.25rem ;
     text-decoration: none;
 }
+
+@media (max-width:820px) {
+    .single-post{
+        width: 90%;
+        
+    }
+}
+
+@media (max-width:600px) {
+    .single-post{
+        margin-left: 0.2rem;
+    }
+}
+
 
 /* review-from */
 
@@ -65,7 +102,7 @@
 }
 
 .reviews{
-    width: 90%;
+    width: 97%;
     border: 1px solid black;
     padding: 0.25rem;
 }
@@ -74,6 +111,18 @@
     border: 1px solid black;
     padding: 0.5rem;
     margin: 0.25rem;
+}
+
+.review-owner{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.review-owner-profile-pic{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
 }
 
 .review-btns{
@@ -89,10 +138,11 @@
     padding: 0.25rem;
     border-color: transparent;
     border-radius: 0.5rem;
+    font-weight: 700;
 }
 
 .review-edit{
-    color: white;
+    color: white !important;
     background-color: #005EFF;
     padding: 0.05rem 0.5rem;
     border-color: transparent;
@@ -109,3 +159,4 @@
         width: 90%;
     }
 }
+

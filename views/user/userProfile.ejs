@@ -54,42 +54,47 @@
     <div class="userposts">
         <% for(let i=0;i<posts.length;i++){ %>
             <div class="post">
-                <p> <b><%= posts[i].owner.username %></b> </p>
-                <a href="/posts/<%=posts[i]._id%>">
-                    <p> <b> <%= posts[i].title %> </b></p>
-                </a>    
-                <p>  <%= posts[i].  description %> </p>
-                <div class="post-details"> 
-                    <div class="post-likes"> 
-                        <b>Likes:</b> &nbsp; 
-                        <% if(!currUser){ %>
-                            <form method="POST" action="/posts/<%= posts[i  ]._id%>/like?_method=PUT">
-                                <button class="post-like-btn">
-                                    <i class="fa-regular fa-heart"></i>
-                                    <input style="display: none;" type="text" value="<%= currUrl %>" name="currUrl">
-                                </button>
-                            </form>
-                        <% }else if( !posts[i].likedIDs.includes(currUser._id)){ %>
-                            <form method="POST" action="/posts/<%= posts[i]._id%>/like?_method=PUT">
-                                <button class="post-like-btn">
-                                    <i class="fa-regular fa-heart"></i>
-                                    <input style="display: none;" type="text" value="<%= currUrl %>" name="currUrl">
-                                </button>
-                            </form>
-                        <% } else { %>
-                            <form method="POST" action="/posts/<%= posts[i]._id%>/dislike?_method=PUT">
-                                <button class="post-like-btn">
-                                    <i class="fa-solid fa-heart" style="color: red;"></i>
-                                    <input style="display: none;" type="text" value="<%= currUrl %>" name="currUrl">
-                                </button>
-                            </form>
-                        <% } %>
-                        
-                        <p class="post-likes-count">&nbsp;<%= posts[i].likedIDs.length %></p> 
+                <div class="post-image">
+                    <img src="<%= posts[i].image.url%>" alt="<%= posts[i].image.filename %>">
+                </div>
+                <div class="post-info">
+                    <p> <b><%= posts[i].owner.username %></b> </p>
+                    <a href="/posts/<%=posts[i]._id%>">
+                        <p> <b> <%= posts[i].title %> </b></p>
+                    </a>    
+                    <p>  <%= posts[i].  description %> </p>
+                    <div class="post-details"> 
+                        <div class="post-likes"> 
+                            <b>Likes:</b> &nbsp; 
+                            <% if(!currUser){ %>
+                                <form method="POST" action="/posts/<%= posts[i]._id%>/like?_method=PUT">
+                                    <button class="post-like-btn">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <input style="display: none;" type="text" value="<%= currUrl %>" name="currUrl">
+                                    </button>
+                                </form>
+                            <% }else if( !posts[i].likedIDs.includes(currUser._id)){ %>
+                                <form method="POST" action="/posts/<%= posts[i]._id%>/like?_method=PUT">
+                                    <button class="post-like-btn">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <input style="display: none;" type="text" value="<%= currUrl %>" name="currUrl">
+                                    </button>
+                                </form>
+                            <% } else { %>
+                                <form method="POST" action="/posts/<%= posts[i]._id%>/dislike?_method=PUT">
+                                    <button class="post-like-btn">
+                                        <i class="fa-solid fa-heart" style="color: red;"></i>
+                                        <input style="display: none;" type="text" value="<%= currUrl %>" name="currUrl">
+                                    </button>
+                                </form>
+                            <% } %>
+                            
+                            <p class="post-likes-count">&nbsp;<%= posts[i].likedIDs.length %></p> 
+                        </div> 
+                        <p class="post-created">  
+                            <%= posts[i].createdDate.toLocaleDateString() %> ,<%= posts[i].createdDate.toLocaleTimeString() %> 
+                        </p>
                     </div> 
-                    <p class="post-created">  
-                        <%= posts[i].createdDate.toLocaleDateString() %> ,<%= posts[i].createdDate.toLocaleTimeString() %> 
-                    </p> 
                 </div>
             </div>    
         <% } %>

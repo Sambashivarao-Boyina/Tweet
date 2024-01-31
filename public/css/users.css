@@ -1,8 +1,9 @@
 .users{
-    width: 50%;
+    width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-left: 3rem;
 }
 .user{
     display: flex;
@@ -52,9 +53,72 @@
     padding: 0.5rem 1rem;
     border-radius: 1rem;
     font-size: 1.5rem;
+    width: 150px;
 }
 
 a{
     color: black;
     text-decoration: none;
+}
+
+@media (max-width:820px) {
+    .users{
+        margin: auto;
+    }
+}
+@media (max-width:670px) {
+    .users{
+        width: 90%;
+    }
+    .user-profilePic{
+        width: 4rem;
+        height: 4rem;
+    }
+    .user-details-head{
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width:475px) {
+    .user-profilePic{
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    .follow-btn{
+        font-size: 1rem;
+        font-family: 700;
+    }
+    .user-details-head{
+        font-size: 1.15rem;
+    }
+    .follow-btn{
+        width: 100px;
+    }
+}
+
+@media (max-width:370px) {
+    .user{
+        width: 90%;
+    }
+    .user-details-head{
+        font-size: 1.5rem;
+    }
+    .user-details-body{
+        display: none;
+    }
+    
+}
+
+@media (max-width:280px) {
+    .userfollow{
+        display: none;
+    }
+    .user-details-head{
+        font-size: 1.5rem;
+    }
+}
+@media (max-width:250px) {
+    .user-details-head{
+        font-size: 1rem;
+    }
 }

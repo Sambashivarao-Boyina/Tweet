@@ -3,20 +3,34 @@
 <div class="posts">
     <% for(let i=0 ;i<posts.length;i++){  %>
             <div class="post">
+               
                 <div class="post-image">
-                    <img src="<%= posts[i].image.url%>" alt="<%= posts[i].image.filename %>">
+                    <a href="/posts/<%=posts[i]._id%>">
+                        <img src="<%= posts[i].image.url%>" alt="<%= posts[i].image.filename %>">
+                    </a>
                 </div>
                 <div class="post-info">
-                    <a href="/user/<%=posts[i].owner._id%>"> <b><%= posts[i].owner.username %></b> </a>
+                    <a href="/user/<%=posts[i].owner._id%>">  
+                       <span class="post-owner">
+                            <% if(posts[i].owner.profileImage && posts[i].owner.profileImage.url){ %>
+                                <img src="<%= posts[i].owner.profileImage.url %>" class="owner-profile-pic" alt="imagenotfound">
+                            <% }else{ %>
+                                <img src="https://i.pinimg.com/564x/ad/73/1c/ad731cd0da0641bb16090f25778ef0fd.jpg" class="owner-profile-pic" alt="imagenotfound">
+                            <% } %>
+                            <b ><%= posts[i].owner.username %></b> 
+                            <br>
+                       </span>
+                    
+                    </a>
                     <a href="/posts/<%=posts[i]._id%>">
                         <p> <b> <%= posts[i].title %> </b></p>
+                        <p>  <%= posts[i].description %> </p>
                     </a>    
-                    <p>  <%= posts[i].description %> </p>
                     <div class="post-details"> 
                         <div class="post-likes"> 
-                            <b>Likes:</b> &nbsp; 
+                            &nbsp; 
                             <% if(!currUser){ %>
-                                <form method="POST" action="/posts/<%= posts[i  ]._id%>/like?_method=PUT">
+                                <form method="POST" action="/posts/<%= posts[i]._id%>/like?_method=PUT">
                                     <button class="post-like-btn">
                                         <i class="fa-regular fa-heart"></i>
                                         <input style="display: none;" type="text" value="<%= currUrl %>" name="currUrl">
