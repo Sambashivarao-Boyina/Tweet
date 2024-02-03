@@ -1,22 +1,88 @@
 <% layout("layout/boilerplate.ejs") %>
 <% block("head").append('<link rel="stylesheet" href="/css/signup.css">') %>
-<form class="signup" method="POST" action="/authentication/signUp" enctype="multipart/form-data">
-    <label for="username">Enter your username:</label>
-    <br>
-    <input  type="text" id="username" name="user[username]"  required>
-    <br>
-    <label for="profile">Upload Profile Pic:</label>
-    <input type="file" name="user[profileImage]" id="profile" accept="image/*">
-    <p>Select Gender:</p>
-    <div>
-        <input type="radio" name="user[gender]" id="male" value="Male" required> <label for="male">Male</label> <br>
-        <input type="radio" name="user[gender]" id="female" value="Female" required> <label for="female">Female</label> <br>
-        <input type="radio" name="user[gender]" id="others" value="Others" required> <label for="others">Others</label><br>
+
+
+<form class="form" method="POST" action="/authentication/signUp" enctype="multipart/form-data">
+    <div class="flex-column">
+        <label>Username </label>
     </div>
-    <label for="email">Enter email:</label><br>
-    <input type="email" id="email" name="user[email]" required><br>
-    <label for="password">Enter password:</label><br>
-    <input type="password" id="password" name="password" required><br>
-    <br>
-    <button class="signup-btn">Sign-Up</button>
-</form>
+    <div class="inputForm">
+        <svg class="username-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"/></svg>
+        <input type="text" class="input" placeholder="Enter your Username" name="user[username]" required>
+    </div>
+
+    <div class="flex-column">
+        <label>Email </label>
+    </div>
+    <div class="inputForm">
+        <svg height="20" viewBox="0 0 32 32" width="20" xmlns="http://www.w3.org/2000/svg"><g id="Layer_3" data-name="Layer 3"><path d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"></path></g></svg>
+        <input type="text" class="input" placeholder="Enter your Email" name="user[email]" required>
+    </div>
+    <div class="flex-column">
+        <label for="fileInput">Upload Profile Pic (Not Mandatory) </label>
+    </div>   
+  
+    <div class="form-input">
+        <input type="file"  id="fileInput" name="user[profileImage]" accept="image/*" style="display: none;" onchange="updateFileName()">
+
+        <!-- Custom-styled button -->
+        <label for="fileInput" class="custom-file-upload">
+            Choose a image
+        </label>
+
+        <!-- Display selected file name -->
+        <p id="fileName">&nbsp;No image selected</p>
+    </div>
+
+    <div class="radio-inputs">
+		<label>
+			<input class="radio-input" type="radio" name="user[gender]" value="Male" required>
+				<span class="radio-tile">
+					<span class="radio-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M112 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm40 304V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V256.9L59.4 304.5c-9.1 15.1-28.8 20-43.9 10.9s-20-28.8-10.9-43.9l58.3-97c17.4-28.9 48.6-46.6 82.3-46.6h29.7c33.7 0 64.9 17.7 82.3 46.6l58.3 97c9.1 15.1 4.2 34.8-10.9 43.9s-34.8 4.2-43.9-10.9L232 256.9V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V352H152z"/></svg>
+                    </span>
+					<span class="radio-label">Male</span>
+				</span>
+		</label>
+		<label>
+			<input  class="radio-input" type="radio" name="user[gender]" value="Female" required>
+			<span class="radio-tile">
+				<span class="radio-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M160 0a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM88 384H70.2c-10.9 0-18.6-10.7-15.2-21.1L93.3 248.1 59.4 304.5c-9.1 15.1-28.8 20-43.9 10.9s-20-28.8-10.9-43.9l53.6-89.2c20.3-33.7 56.7-54.3 96-54.3h11.6c39.3 0 75.7 20.6 96 54.3l53.6 89.2c9.1 15.1 4.2 34.8-10.9 43.9s-34.8 4.2-43.9-10.9l-33.9-56.3L265 362.9c3.5 10.4-4.3 21.1-15.2 21.1H232v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V384H152v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V384z"/></svg>
+                </span>
+				<span class="radio-label">Female</span>
+			</span>
+		</label>
+		<label>
+			<input class="radio-input" type="radio" name="user[gender]" value="Others" required>
+			<span class="radio-tile">
+				<span class="radio-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M160 0a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm8 352V128h6.9c33.7 0 64.9 17.7 82.3 46.6l58.3 97c9.1 15.1 4.2 34.8-10.9 43.9s-34.8 4.2-43.9-10.9L232 256.9V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V352h0zM58.2 182.3c19.9-33.1 55.3-53.5 93.8-54.3V384h0v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V384H70.2c-10.9 0-18.6-10.7-15.2-21.1L93.3 248.1 59.4 304.5c-9.1 15.1-28.8 20-43.9 10.9s-20-28.8-10.9-43.9l53.6-89.2z"/></svg>
+                </span>
+				<span class="radio-label">Other</span>
+			</span>
+		</label>
+</div>
+
+
+
+    <div class="flex-column">
+        <label>Password </label>
+    </div>
+    <div class="inputForm">
+        <svg height="20" viewBox="-64 0 512 512" width="20" xmlns="http://www.w3.org/2000/svg"><path d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"></path><path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"></path></svg>        
+        <input type="password" class="input input-password" placeholder="Enter your Password" name="password" required>
+        <svg class="showpassword" viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"></path></svg>
+    </div>
+    
+    
+    <button class="button-submit">Sign In</button>
+    <p class="p">Do you have an account? <a href="/authentication/login"><span class="span">Login</span></a>
+
+   
+
+   
+        
+</button></div></form>
+
+<script src="/script/login.js"></script>

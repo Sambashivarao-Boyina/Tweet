@@ -68,13 +68,65 @@
     outline-color: #005EFF;
 }
 
-.message-btn{
-    background-color:  #005EFF;
+.message-btn {
+    font-family: inherit;
+    font-size: 18px;
+    background: linear-gradient(to bottom, #0077b6 0%,#00b4d8 100%);
     color: white;
-    padding: 1rem 1rem;
-    border-radius: 50%;
-    border-color: transparent;
+    padding: 0.8em 0.8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
 }
+
+.message-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.message-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.message-btn span {
+    display: block;
+    margin-left: 0.4em;
+    transition: all 0.3s;
+}
+
+.message-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: white;
+    transition: all 0.3s;
+}
+
+.message-btn .svg-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-right: 0.5em;
+    transition: all 0.3s;
+}
+
+.message-btn:hover .svg-wrapper {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.message-btn:hover svg {
+    transform: rotate(45deg);
+}
+
+
 
 .message-date{
     font-size: 0.5rem;

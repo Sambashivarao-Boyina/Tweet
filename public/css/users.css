@@ -27,7 +27,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    flex: 1;
+    flex-grow: 1;
+    overflow: hidden;
 }
 
 .user-details-head{
@@ -46,7 +47,7 @@
     justify-content: space-evenly;
     
 }
-.follow-btn{
+/* .follow-btn{
     color: white;
     background-color:  #005EFF;
     border-color: transparent;
@@ -54,8 +55,34 @@
     border-radius: 1rem;
     font-size: 1.5rem;
     width: 150px;
-}
+} */
 
+.follow-btn{
+    width: 150px;
+    height: 60px;
+    border: 3px solid #0077b6;
+    border-radius: 45px;
+    transition: all 0.3s;
+    cursor: pointer;
+    background: white;
+    font-size: 1.2em;
+    font-weight: 550;
+    font-family: 'Montserrat', sans-serif;
+    color: #0077b6;
+}
+  
+.follow-btn:hover {
+    background: #0077b6;
+    color: white;
+    font-size: 1.5em;
+}
+@media (max-width:420px) {
+    .follow-btn:hover {
+        background: #0077b6;
+        color: white;
+        font-size: 1.25em;
+    }
+}
 a{
     color: black;
     text-decoration: none;
@@ -77,6 +104,7 @@ a{
     .user-details-head{
         font-size: 1.5rem;
     }
+    
 }
 
 @media (max-width:475px) {
@@ -102,10 +130,16 @@ a{
     }
     .user-details-head{
         font-size: 1.5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding-left: 0.25rem;
+        
     }
     .user-details-body{
         display: none;
     }
+   
     
 }
 
@@ -122,3 +156,52 @@ a{
         font-size: 1rem;
     }
 }
+.searchBox {
+    display: flex;
+    max-width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: #caf0f8;
+    border-radius: 50px;
+    position: relative;
+
+}
+  
+
+.searchButton {
+    color: white;
+    position: absolute;
+    right: 8px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--gradient-2, linear-gradient(90deg, #90e0ef 0%,#0077b6 100%));
+    border: 0;
+    display: inline-block;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+}
+  
+  /*hover effect*/
+.searchButton:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.5) 0 10px 20px;
+    transform: translateY(-3px);
+}
+  /*button pressing effect*/
+.searchButton:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+.searchInput {
+    border: none;
+    background: none;
+    outline: none;
+    color:black;
+    font-weight: 700;
+    font-size:1.25rem;
+    padding: 24px 46px 24px 26px;
+  
+}
+  

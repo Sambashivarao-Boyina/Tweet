@@ -28,7 +28,7 @@ router.get("/",wrapAsync(
             res.redirect("/posts");
         });
         
-router.get("/new",(req,res)=>{
+router.get("/new",isLoggedIn,(req,res)=>{
             res.render("home/new.ejs");
         });
 

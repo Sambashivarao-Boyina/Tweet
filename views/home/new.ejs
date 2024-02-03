@@ -1,17 +1,39 @@
 <% layout("layout/boilerplate") %>
 <% block('head').append('<link rel="stylesheet" href="/css/newform.css">') %>
-<form class="form" method="POST" action="/posts"  enctype="multipart/form-data">
-    <label for="title"><b>Enter title:</b></label>
-    <br><br>
-    <input class="form-title" type="text" id="title" placeholder="enter title" name="post[title]" required >
-    <br><br>
-    <label for="image"><b>Upload Image:</b></label>
-    <br><br>
-    <input class="form-image" type="file"  id="image" placeholder="image" name="post[image]" accept="image/*" required >
-    <br><br>
-    <label for="description"><b>Enter Description:</b></label>
-    <br><br>
-    <textarea class="form-desc" name="post[description]" id="description" cols="30" rows="15" req ></textarea>
-    <br><br>
-    <button class="form-btn">Create</button>
-</form>
+<div class="form-container">
+    <form class="form" method="POST" action="/posts"  enctype="multipart/form-data">
+        <br>
+        <label for="title" class="form-label"><b>Enter title:</b></label>
+        <br>
+        <input class="form-title" type="text" id="title" placeholder="enter title" name="post[title]" required >
+        <br>
+      
+
+        <div class="form-input">
+            <input type="file"  id="fileInput" name="post[image]" accept="image/*" style="display: none;" onchange="updateFileName()">
+
+            <!-- Custom-styled button -->
+            <label for="fileInput" class="custom-file-upload">
+                Choose a image
+            </label>
+
+            <!-- Display selected file name -->
+            <p id="fileName">&nbsp;No image selected</p>
+        </div>
+
+        <br>
+        <label for="description" class="form-label"><b>Enter Description:</b></label>
+        <br>
+        <textarea class="form-desc" name="post[description]" id="description" cols="30" rows="7 " req ></textarea>
+        <br><br>
+        <button class="form-btn">Create</button>
+
+
+
+        
+
+
+    </form>
+</div>
+
+<% block("footer").append('<script src="/script/newform.js"></script>') %>
