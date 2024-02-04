@@ -1,35 +1,86 @@
 
 <nav class="nav">
     <div class="nav-head">
-        <i class="fa-solid fa-blog fa-2xl" style="color: #005eff;"></i>
+        <i class="fa-solid fa-blog fa-2xl" style="color: #0145EA;"></i>
         <a href="/posts">   
             <p>&nbsp;&nbsp;Tweet</p>
         </a>
         
     </div>
     <div class="nav-items">
-        <a class="nav-item" href="/posts"><i class="fa-solid fa-house"></i>&nbsp;<span class="nav-item-name">Home</span></a>
-        <a class="nav-item" href="/allusers"> <i class="fa-solid fa-people-group"></i>&nbsp;<span class="nav-item-name">All Users</span></a>
+        <a class="nav-item" href="/posts">
+            <div class="nav-item-icon"> 
+                <i class="fa-solid fa-house"></i> 
+            </div> 
+            <div class="nav-item-name">
+                Home
+            </div>
+        </a>
+        <a class="nav-item" href="/allusers"> 
+            <div class="nav-item-icon">
+                <i class="fa-solid fa-people-group"></i>
+            </div>
+            <div class="nav-item-name">
+                All Users
+            </div>
+        </a>
         <% if(currUser){ %>
-            <a class="nav-item" href="/user/<%= currUser._id %>/myfollowingsPosts"><i class="far fa-lightbulb"></i>&nbsp;<span class="nav-item-name">PostsForU</span></a>
+            <a class="nav-item" href="/user/<%= currUser._id %>/myfollowingsPosts">
+                <div class="nav-item-icon">
+                    <i class="far fa-lightbulb"></i>
+                </div>
+                <div class="nav-item-name">
+                    PostsForU
+                </div>
+            </a>
         <% } %>
-        <a class="nav-item" href="/posts/new"><i class="fa-regular fa-square-plus"></i>&nbsp;<span class="nav-item-name">Create Post</span></a>
+        <a class="nav-item" href="/posts/new">
+            <div class="nav-item-icon">
+                <i class="fa-regular fa-square-plus"></i>
+            </div>
+            <div class="nav-item-name">
+                Create Post
+            </div>
+        </a>
         <% if(!currUser){ %>
-            <a class="nav-item" href="/authentication/login"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;<span class="nav-item-name">Log-in</span></a>
-            <a class="nav-item" href="/authentication/signUp"><i class="fa-solid fa-user-plus"></i>&nbsp;<span class="nav-item-name">Sign-up</span></a>
+            <a class="nav-item" href="/authentication/login">
+                <div class="nav-item-icon">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                </div>
+                <div class="nav-item-name">
+                    Log-in
+                </div>
+            </a>
+            <a class="nav-item" href="/authentication/signUp">
+                <div class="nav-item-icon">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <div class="nav-item-name">
+                    Sign-up
+                </div>
+            </a>
         <% } %>
         <% if(currUser){ %>
-            <a class="nav-item" href="/authentication/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;<span class="nav-item-name">Log-out</span></a>
-            <div class="nav-item nav-item-last">
-                <a  href="/user/<%=currUser._id%>" class="username">
-                    <div class="owner">
+            <a class="nav-item" href="/authentication/logout">
+                <div class="nav-item-icon">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </div>
+                <div class="nav-item-name">
+                    Log-out
+                </div>
+            </a>
+            <div class="nav-item-last">
+                <a  href="/user/<%=currUser._id%>" class="username nav-item ">
+                    <div class="owner nav-item-icon">
                         <% if(currUser.profileImage && currUser.profileImage.url){ %>
                             <img src="<%= currUser.profileImage.url %>" class="owner-profile-pic" alt="imagenotfound">
                         <% }else{ %>
                             <img src="https://i.pinimg.com/564x/ad/73/1c/ad731cd0da0641bb16090f25778ef0fd.jpg" class="owner-profile-pic" alt="imagenotfound">
                         <% } %>
-                        &nbsp;<span class="nav-item-name"><%= currUser.username %></span>
                     </div>
+                    <div class="nav-item-name">
+                        <%= currUser.username %>
+                    </div>   
                 </a>
             </div>
             

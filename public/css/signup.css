@@ -173,7 +173,7 @@
     align-items: center;
     justify-content: center;
     width: 80px;
-    min-height: 80px;
+    height: 80px;
     border-radius: 0.5rem;
     border: 2px solid #b5bfd9;
     background-color: #fff;
@@ -294,9 +294,18 @@ a{
     }
 }
 
-@media (max-width:350px) {
-    .radio-title{
-        height: 50px;
-        min-width: 50px;
+@media (max-width:420px) {
+    .radio-tile{
+      width: 60px;
+      height: 60px;
+    }
+    .radio-icon{
+        font-size: 10px;
+    }
+}
+
+@media (max-width:450px) {
+    .showpassword{
+      margin-right: 1rem;
     }
 }

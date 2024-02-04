@@ -140,3 +140,9 @@ a{
   height: 17.5px;
   width: 17.5px;
 }
+
+@media (max-width:450px) {
+    .showpassword{
+        margin-right: 1rem;
+    }
+}

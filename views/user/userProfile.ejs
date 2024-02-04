@@ -1,55 +1,94 @@
 <% layout("layout/boilerplate.ejs") %>
 <% block("head").append('<link rel="stylesheet" href="/css/userProfile.css">') %>
 <div class="userProfile">
-    
-    <% if(user.profileImage && user.profileImage.url){ %>
-        <img src="<%= user.profileImage.url %>" class="user-profilePic" alt="imagenotfound">
-    <% }else{ %>
-        <img src="https://i.pinimg.com/564x/ad/73/1c/ad731cd0da0641bb16090f25778ef0fd.jpg" class="user-profilePic" alt="imagenotfound">
-    <% } %>
-    <br>
-    <% if(currUser && user._id.equals(currUser._id)){ %>
-        <form method="POST" action="/user/<%= currUser._id %>/changeProfile?_method=PUT" enctype="multipart/form-data">
-            <input type="file" name="profileImage" placeholder="image"  accept="image/*"  required>
-            <button class="follow-btn"> Change Profile Image</button>
-        </form>
-        <br>
-        <form method="POST" action="/user/<%= currUser._id %>/deleteProfile?_method=PUT" enctype="multipart/form-data">
-            <button class="follow-btn"> Delete Profile Image</button>
-        </form>
-        <br>
-    <% } %>
+    <br><br>
 
-    <h1><%= user.username %></h1>
-    <a href="/user/<%= user._id %>/myFollowing">  <p><b>Following :</b> <%= user.following.length %> </a> &nbsp;&nbsp; 
-    <a href="/user/<%= user._id %>/myFollowers"> <b>Followers :</b> <%= user.followers.length %></p> </a>
-    <a href="/chats/<%= user._id %>/myChats"> <h2>Mychats</h2> </a>
-    <% if(currUser && !currUser._id.equals(user._id) && !user.chats.includes(currUser._id)){ %>
-        <br>
-        <form method="POST" action="/user/<%= user._id %>/startchat?_method=PUT">
-            <button class="follow-btn">Start Chat</button>
-        </form>
-    <% } %>
-    <br>
-    <p><b>Total Posts :</b><%= posts.length %></p>
-    <% if(!currUser){ %>
-        <form method="POST" action="/user/<%= user._id %>/follow?_method=PUT">
-            <input type="text" name="currUrl" value="<%= currUrl %>" style="display: none;" >   
-            <button class="follow-btn">Follow</button>
-        </form>
-    <%}else if(currUser &&!currUser._id.equals(user._id)){ %>
-        <% if(user.followers.includes(currUser._id)){ %>
-            <form method="POST" action="/user/<%= user._id %>/unfollow?_method=PUT"> 
-                <input type="text" name="currUrl" value="<%= currUrl %>" style="display: none;" >     
-                <button class="follow-btn">Unfollow</button>
-            </form>
-        <% }else { %>
-            <form method="POST" action="/user/<%= user._id %>/follow?_method=PUT">  
-                <input type="text" name="currUrl" value="<%= currUrl %>" style="display: none;" >    
-                <button class="follow-btn">Follow</button>
+
+    <div class="user-profile-image">
+        <% if(user.profileImage && user.profileImage.url){ %>
+            <img src="<%= user.profileImage.url %>" class="user-profilePic" alt="imagenotfound">
+        <% }else{ %>
+            <img src="https://i.pinimg.com/564x/ad/73/1c/ad731cd0da0641bb16090f25778ef0fd.jpg" class="user-profilePic" alt="imagenotfound">
+        <% } %>
+        
+        <% if(currUser && user._id.equals(currUser._id)){ %>
+            <div class="user-profile-pic-edit">
+                <i class="fa-solid fa-pen"></i>
+            </div>
+
+            <div class="user-profile-edit-options">
+                <form method="POST" action="/user/<%= currUser._id %>/changeProfile?_method=PUT" enctype="multipart/form-data" class="user-profile-pic-update"> 
+                    <div class="ext-input-div">
+                        <div class="input-div">
+                            <input type="file" name="profileImage" placeholder="image"  accept="image/*"  required class="input">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon"><polyline points="16 16 12 12 8 16"></polyline><line y2="21" x2="12" y1="12" x1="12"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline></svg>
+                        </div>
+                    </div>
+                    
+                    <button class="user-profilePic-edit-btns"> Change Profile Image</button>
+                </form>
+                <br>
+                <hr style="border-top: 2px solid #a3eefd; width: 100%;">
+                <br>
+                <form method="POST" action="/user/<%= currUser._id %>/deleteProfile?_method=PUT" enctype="multipart/form-data">
+                    <button class="user-profilePic-edit-btns"> Delete Profile Image</button>
+                </form>
+            </div>
+            
+        <% } %>
+    </div>
+
+    <div class="user-details">
+        <div class="user-username"><%= user.username %></div>
+        <div class="user-details-inner">
+            <div class="user-inner-details">
+                <a href="/user/<%= user._id %>/myFollowing">  <p><b>Following :</b> <%= user.following.length %> </p></a> 
+                <a href="/user/<%= user._id %>/myFollowers"> <p> <b>Followers :</b> <%= user.followers.length %></p> </a>
+                <p><b>Total Posts :</b><%= posts.length %></p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+    
+
+    <div class="user-chats">
+        <a href="/chats/<%= user._id %>/myChats"> My Chats </a>
+    </div>
+
+    <div class="user-others-options">
+        <% if(currUser && !currUser._id.equals(user._id) && !user.chats.includes(currUser._id) ){ %>
+            <br>
+            <form method="POST" action="/user/<%= user._id %>/startchat?_method=PUT">
+                <button class="follow-btn">Start Chat</button>
             </form>
         <% } %>
-    <% } %>
+        
+        <% if(!currUser ){ %>
+            <form method="POST" action="/user/<%= user._id %>/follow?_method=PUT">
+                <input type="text" name="currUrl" value="<%= currUrl %>" style="display: none;" >   
+                <button class="follow-btn">Follow</button>
+            </form>
+        <%}else if(currUser &&!currUser._id.equals(user._id)){ %>
+            <% if(user.followers.includes(currUser._id)){ %>
+                <form method="POST" action="/user/<%= user._id %>/unfollow?_method=PUT"> 
+                    <input type="text" name="currUrl" value="<%= currUrl %>" style="display: none;" >     
+                    <button class="follow-btn">Unfollow</button>
+                </form>
+            <% }else { %>
+                <form method="POST" action="/user/<%= user._id %>/follow?_method=PUT">  
+                    <input type="text" name="currUrl" value="<%= currUrl %>" style="display: none;" >    
+                    <button class="follow-btn">Follow</button>
+                </form>
+            <% } %>
+        <% } %>
+    
+    </div>
+   
+    
+
     <h3>My Posts:</h3>
     <div class="userposts">
         <% for(let i=0;i<posts.length;i++){ %>
@@ -100,3 +139,5 @@
         <% } %>
     </div>
 </div>
+
+<% block("footer").append('<script src="/script/userProfile.js"></script>') %>
