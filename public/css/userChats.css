@@ -19,12 +19,17 @@
 .chat{
     display: flex;
     flex-direction: row;
-    border:1px solid #0145EA;
+    /* border:1px solid #0145EA; */
     border-radius: 1rem;
     margin: 1rem;
     padding: 1rem;
     background-color: white;
-    
+    transition: all 0.25s ease-in-out ;
+    box-shadow: 2px 2px 8px grey;
+}
+
+.chat:hover{
+    box-shadow: 4px 4px 8px grey;
 }
 
 .chat-profilePic{

@@ -17,6 +17,9 @@ body{
 .head{
     display: none;
 }
+
+
+
 .container{
     flex-grow: 1;
     display: flex;
@@ -52,6 +55,7 @@ body{
 .nav-head p,i{
     font-size: 2rem;
     font-weight: 700;
+    font-family: 'Pacifico', cursive;
 }
 
 .nav-items{
@@ -148,7 +152,12 @@ body{
         background-color: white;
         height: 4rem;
         padding-left:2rem ;
+        
 
+    }
+
+    .head p{
+        font-family: 'Pacifico', cursive;
     }
     .nav{
         position: fixed;
@@ -250,9 +259,10 @@ body{
     background-color: white;
     border-radius: 2rem;
     transition: all 0.5s ease-in-out ;
+    box-shadow: 1px 1px 5px grey;
 }
 .post:hover{
-    box-shadow: 2px 2px 8px grey;
+    box-shadow: 4px 4px 8px grey;
 }
 .post-image{
     width: 50%;
