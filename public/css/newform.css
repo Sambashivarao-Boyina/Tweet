@@ -1,11 +1,13 @@
 .form-container{
-    width: 100%;
+    width: 90%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
+    background-color: white;
+    border-radius: 2rem;
+    padding-bottom: 3rem;
 }
 .form{
     width: 55%; 
@@ -105,8 +107,13 @@ input[type="file"] {
 
 
 @media (max-width:820px) {
+    .form-container{
+        margin: auto;
+        padding: auto;
+    }
     .form{
-        width: 70%;
+        width: 80%;
+        margin: auto;
     }
 }
 

@@ -54,9 +54,11 @@
     
     
 
-    <div class="user-chats">
-        <a href="/chats/<%= user._id %>/myChats"> My Chats </a>
-    </div>
+    <% if(currUser && currUser._id.equals(user._id)){ %>
+        <div class="user-chats">
+            <a href="/chats/<%= user._id %>/myChats"> My Chats </a>
+        </div>
+    <% } %>
 
     <div class="user-others-options">
         <% if(currUser && !currUser._id.equals(user._id) && !user.chats.includes(currUser._id) ){ %>
@@ -94,14 +96,19 @@
         <% for(let i=0;i<posts.length;i++){ %>
             <div class="post">
                 <div class="post-image">
-                    <img src="<%= posts[i].image.url%>" alt="<%= posts[i].image.filename %>">
+                    <a href="/posts/<%=posts[i]._id%>">
+                        <img src="<%= posts[i].image.url%>" alt="<%= posts[i].image.filename %>">
+                    </a>
                 </div>
                 <div class="post-info">
                     <p> <b><%= posts[i].owner.username %></b> </p>
                     <a href="/posts/<%=posts[i]._id%>">
                         <p> <b> <%= posts[i].title %> </b></p>
-                    </a>    
-                    <p>  <%= posts[i].  description %> </p>
+                    </a>
+                    <a href="/posts/<%=posts[i]._id%>">
+                        <p>  <%= posts[i].  description %> </p>
+                    </a>
+                    
                     <div class="post-details"> 
                         <div class="post-likes"> 
                             <b>Likes:</b> &nbsp; 

@@ -5,7 +5,7 @@
 }
 
 body{
-    background-color:#f0fafd;
+    background-color:#e9f7fb;
 }
 
 
@@ -69,8 +69,9 @@ body{
     flex-direction: row;
     align-items: center;
     
-
 }
+
+
 .nav-item-icon{
     color: #0145EA;
     height: 2rem;
@@ -113,6 +114,7 @@ body{
     flex-direction: row;
     align-items: center;
     
+    
 }
 
 .owner-profile-pic{
@@ -150,7 +152,7 @@ body{
     }
     .nav{
         position: fixed;
-        top: 4.2rem;
+        top: 4rem;
         left: 0;
         width: 5rem;
     }
@@ -238,23 +240,30 @@ body{
 }
 
 .post{
-    border: 1px solid black;
+    /* border: 1px solid #0145EA; */
     line-height: 2rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: 1rem;
     padding:1rem;
+    background-color: white;
+    border-radius: 2rem;
+    transition: all 0.5s ease-in-out ;
 }
-
+.post:hover{
+    box-shadow: 2px 2px 8px grey;
+}
 .post-image{
     width: 50%;
     margin:1rem ;
+    
 }
 
 .post-image  img{
     width: 100%;
     object-fit: cover;
+    border-radius: 1.5rem;
 }
 .post-info{
     width: 50%;

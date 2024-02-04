@@ -3,6 +3,8 @@
     line-height: 2rem;
     width: 70%;
     margin-top: 2rem;
+    background-color: white;
+    border-radius: 2rem;
 }
 
 .single-post a{
@@ -36,6 +38,7 @@
 .singlepost-image{
     width: 100%;
     object-fit: cover; 
+    border-radius: 2rem;
 }
 
 
@@ -103,14 +106,17 @@
 
 .reviews{
     width: 97%;
-    border: 1px solid black;
     padding: 0.25rem;
 }
 
 .review{
-    border: 1px solid black;
     padding: 0.5rem;
     margin: 0.25rem;
+    transition: all 0.5s ease-in-out;
+}
+
+.review:hover{
+    box-shadow: 2px 2px 8px grey;
 }
 
 .review-owner{
