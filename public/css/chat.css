@@ -153,7 +153,7 @@
         margin: auto;
     }
     .input-box{
-        font-size: 1.2rem;
+        font-size: 0.75rem;
     }
 }
 @media (max-width:450px) {
