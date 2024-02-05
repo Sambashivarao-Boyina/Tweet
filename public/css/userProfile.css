@@ -43,6 +43,7 @@
     padding: 0.35rem;
     border-radius: 50%;
     align-self: flex-end;
+    cursor:pointer;
 }
 .user-profile-pic-edit i{
     color: white;
@@ -82,7 +83,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    flex-wrap: wrap;
     gap: 1rem;
 }
 
@@ -235,7 +235,7 @@
 }
 
 
-@media (max-width:350px) {
+@media (max-width:360px) {
     .user-inner-details{
         display: flex;
         flex-direction: column;
