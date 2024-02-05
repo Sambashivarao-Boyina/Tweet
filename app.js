@@ -23,6 +23,7 @@ const authentication=require("./routes/authentication.js");
 const user=require("./routes/user.js");
 const allUsers=require("./routes/allusers.js");
 const chats=require("./routes/chats.js");
+const MongoStore=require("connect-mongo");
 
 app.engine("ejs",ejsMate);
 app.set("views",path.join(__dirname,"views"));
@@ -32,8 +33,8 @@ app.use(express.static(path.join(__dirname,"/public")));
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({extended:true}));
 
-const dbURL='mongodb://127.0.0.1:27017/tweet';
-// const dbURL=process.env.ATLASDB_URL;
+// const dbURL='mongodb://127.0.0.1:27017/tweet';
+const dbURL=process.env.ATLASDB_URL;
 
 async function main() {
   await mongoose.connect(dbURL);
@@ -48,8 +49,22 @@ main()
     });
 
 //middlewares
+
+const store=MongoStore.create({
+    mongoUrl:dbURL,
+    crypto:{
+        secret:process.env.SECRET,
+    },
+    touchAfter:24*3600
+});
+
+store.on("error",()=>{
+    console.log("Error on mongo session store",err);
+})
+
 const sessionOptions={
-    secret:"sambatweet",
+    store,
+    secret:process.env.SECRET,
     resave:false,
     saveUninitialized:true,
     cookie:{
@@ -58,6 +73,8 @@ const sessionOptions={
         httpOnly:true,
     },
 }
+
+
 
 app.use(session(sessionOptions));
 app.use(flash()); 
