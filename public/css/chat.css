@@ -152,6 +152,9 @@
         width: 90%;
         margin: auto;
     }
+    .input-box{
+        font-size: 1.2rem;
+    }
 }
 @media (max-width:450px) {
     #btn-send{
