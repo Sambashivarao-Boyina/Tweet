@@ -29,7 +29,7 @@
     </div>
 
     <form class="message-box" method="POST" action="/chats/<%= currUser._id %>/<%= receiver._id %>/message">
-        <textarea class="input-box" name="message[text]" placeholder="message" cols="30" rows="10"></textarea>
+        <textarea class="input-box" name="message[text]" placeholder="message" cols="30" rows="10" required></textarea>
         <button class="message-btn">
             <div class="svg-wrapper-1">
                 <div class="svg-wrapper">

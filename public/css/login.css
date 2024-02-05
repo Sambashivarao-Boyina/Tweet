@@ -141,6 +141,10 @@ a{
   width: 17.5px;
 }
 
+.showpassword{
+  cursor: pointer;
+}
+
 @media (max-width:450px) {
     .showpassword{
         margin-right: 1rem;

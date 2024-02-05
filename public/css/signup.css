@@ -280,6 +280,10 @@ a{
     text-decoration: none;
 }
 
+.showpassword{
+  cursor: pointer;
+}
+
 @media (max-width:650px) {
     .form{
         width: 400px;
