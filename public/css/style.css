@@ -216,9 +216,6 @@ body{
         border-radius: 50%;
         padding: 0.5rem;
     }
-    .nav-item-icon:hover{
-        background-color:#caf0f8 ;
-    }
     .container{
         margin: auto;
         display: block;
