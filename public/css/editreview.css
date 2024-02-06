@@ -28,5 +28,7 @@
 @media (max-width:675px) {
     .review-form{
         width: 80%;
+        margin: auto;
     }
+
 }

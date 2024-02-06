@@ -39,7 +39,7 @@ module.exports.validateMessage=(req,res,next)=>{
 module.exports.isLoggedIn=(req,res,next)=>{
     if(!req.isAuthenticated()){
         req.session.redirectUrl=req.originalUrl;
-        req.flash("error","You must login/signup before useing");
+        req.flash("error","You must login/signup before using");
         return res.redirect("/authentication/login");
     }else{
         next();
