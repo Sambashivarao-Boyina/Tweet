@@ -23,4 +23,5 @@ To Visit the website [click me](https://tweet-ic6u.onrender.com)
 2. Install MongoDB in you Machine
 3. Install dependencies using `npm install`.
 4. Configure the `.env` file and add the Database Url at file `app.js`.
-5. Run the application with `node app.js` or `nodemon app.js`.
+5. Also set up the cloudinary account for the cloud for storing images. 
+6. Run the application with `node app.js` or `nodemon app.js`.
