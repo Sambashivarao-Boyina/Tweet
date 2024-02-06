@@ -17,6 +17,7 @@ To visit the website [click me](https://tweet-ic6u.onrender.com)
 - **Frontend:** HTML,CSS,Javascript
 - **Backend:** Nodejs,Express
 - **Databases:** MongoDB
+- **Real-time Communication:** WebSockets
 
 ### Installation
 1. Clone the repository.
