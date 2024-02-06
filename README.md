@@ -1,6 +1,6 @@
 # Tweet
 ## Project Description
-This is Social media website functionality more like **Instagram**
+This is Social media website functionality more like **Instagram**. 
 To Visit the website [click me](https://tweet-ic6u.onrender.com)
 
 ### The Functionalities of this website are
