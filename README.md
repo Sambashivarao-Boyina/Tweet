@@ -14,7 +14,7 @@ To Visit the website [click me](https://tweet-ic6u.onrender.com)
 - Owner can edit his Profile image 
 
 ### Technologies used
-- **Frontend:**HTML,CSS,Javascript
+- **Frontend:** HTML,CSS,Javascript
 - **Backend:** Nodejs,Express
 - **Databases:** MongoDB
 
