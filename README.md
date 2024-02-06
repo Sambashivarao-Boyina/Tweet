@@ -1,7 +1,7 @@
 # Tweet
 ## Project Description
 This is a Social media website functionality more like **Instagram**.  
-To Visit the website [click me](https://tweet-ic6u.onrender.com)
+To visit the website [click me](https://tweet-ic6u.onrender.com)
 
 ### The Functionalities of this website are
 - Users can Login or Sign-up using Username
