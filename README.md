@@ -18,7 +18,7 @@ To visit the website [click me](https://tweet-ic6u.onrender.com)
 - **Backend:** Nodejs,Express
 - **Databases:** MongoDB
 
-## Installation
+### Installation
 1. Clone the repository.
 2. Install MongoDB in you Machine
 3. Install dependencies using `npm install`.
