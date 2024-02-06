@@ -22,5 +22,5 @@ To Visit the website [click me](https://tweet-ic6u.onrender.com)
 1. Clone the repository.
 2. Install MongoDB in you Machine
 3. Install dependencies using `npm install`.
-4. Configure the `.env` file and add the Dataabase Url at file `app.js`.
+4. Configure the `.env` file and add the Database Url at file `app.js`.
 5. Run the application with `node app.js` or `nodemon app.js`.
