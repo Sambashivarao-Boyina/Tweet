@@ -19,8 +19,8 @@ To Visit the website [click me](https://tweet-ic6u.onrender.com)
 - **Databases:** MongoDB
 
 ## Installation
-
 1. Clone the repository.
-2. Install dependencies using `npm install` or `pip install -r requirements.txt`.
-3. Configure the settings by copying the `.env.example` file to `.env` and filling in the required values.
-4. Run the application with `npm start` or `python app.py`.
+2. Install MongoDB in you Machine
+3. Install dependencies using `npm install`.
+4. Configure the `.env` file and add the Dataabase Url at file `app.js`.
+5. Run the application with `node app.js` or `nodemon app.js`.
