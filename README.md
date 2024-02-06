@@ -1,6 +1,6 @@
 # Tweet
 ## Project Description
-This is Social media website functionality more like **Instagram**.  
+This is a Social media website functionality more like **Instagram**.  
 To Visit the website [click me](https://tweet-ic6u.onrender.com)
 
 ### The Functionalities of this website are
@@ -12,5 +12,11 @@ To Visit the website [click me](https://tweet-ic6u.onrender.com)
 - They get Posts of their following one also in separate page
 - Users can make chat with other users
 - Owner can edit his Profile image 
+
+### Technologies used
+- **Frontend:**HTML,CSS,Javascript
+- **Backend:** Nodejs,Express
+- **Databases:** MongoDB
+
 
 
